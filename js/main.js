@@ -1,15 +1,5 @@
 'use strict';
 
-var DISPLAY_WIDTH = 85;
-var DISPLAY_HEIGHT = 30;
-var DISPLAY_FONT_SIZE = 18;
-
-var WORLD_WIDTH = DISPLAY_WIDTH - 20;
-var WORLD_HEIGHT = DISPLAY_HEIGHT;
-var WORLD_LEVELS = 10;
-
-var VIEW_DISTANCE = 91;
-
 // Set up display
 var display = new ROT.Display({
 	width: DISPLAY_WIDTH,
@@ -86,25 +76,25 @@ function frame(){
 		for(var y = 0; y < WORLD_HEIGHT; y++){
 			if(!fovData[x][y]){
 				if(!seenData[x][y]){
-					display.draw(x, y, '', '', '#333');
+					display.draw(x, y, '', '', UNSEEN_COLOR);
 				}else{
 					if(mapData[0][x][y]){
-						display.draw(x, y, '', '', '#222');
+						display.draw(x, y, '', '', SEEN_WALL);
 					}else{
-						display.draw(x, y, '', '', '#17171c');
+						display.draw(x, y, '', '', SEEN_FLOOR);
 					}
 				}
 				continue;
 			}
 			if(mapData[0][x][y]){
-				display.draw(x, y, '', '', '#222');
+				display.draw(x, y, '', '', VISIBLE_WALL);
 			}else{
-				display.draw(x, y, '', '', '#111');
+				display.draw(x, y, '', '', VISIBLE_FLOOR);
 			}
 		}
 	}
 
-	display.draw(player.x, player.y, '@', '#fff', '#111');
+	display.draw(player.x, player.y, '@', '#fff', VISIBLE_FLOOR);
 
 	player.turn(function(){
 		frame();
