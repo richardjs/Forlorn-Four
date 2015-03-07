@@ -8,6 +8,8 @@ var WORLD_WIDTH = DISPLAY_WIDTH - 20;
 var WORLD_HEIGHT = DISPLAY_HEIGHT;
 var WORLD_LEVELS = 10;
 
+var VIEW_DISTANCE = 91;
+
 // Set up display
 var display = new ROT.Display({
 	width: DISPLAY_WIDTH,
@@ -59,6 +61,12 @@ var fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 //TODO doesn't support multiple levels
 var fovData = [];
 
+// Keep track of the map we've seen
+var seenData = []
+for(var x = 0; x < WORLD_WIDTH; x++){
+	seenData[x] = [];
+}
+
 function frame(){
 	// Compute FOV
 	//TODO tie this to PC movement
@@ -67,8 +75,9 @@ function frame(){
 		fovData[x] = [];
 	}
 	// ...and compute
-	fov.compute(player.x, player.y, 10, function(x, y, distance, visibility){
+	fov.compute(player.x, player.y, VIEW_DISTANCE, function(x, y, distance, visibility){
 		fovData[x][y] = true;
+		seenData[x][y] = true;
 	});
 
 	// Draw
@@ -76,7 +85,15 @@ function frame(){
 	for(var x = 0; x < WORLD_WIDTH; x++){
 		for(var y = 0; y < WORLD_HEIGHT; y++){
 			if(!fovData[x][y]){
-				display.draw(x, y, '', '', '#333');
+				if(!seenData[x][y]){
+					display.draw(x, y, '', '', '#333');
+				}else{
+					if(mapData[0][x][y]){
+						display.draw(x, y, '', '', '#222');
+					}else{
+						display.draw(x, y, '', '', '#17171c');
+					}
+				}
 				continue;
 			}
 			if(mapData[0][x][y]){
