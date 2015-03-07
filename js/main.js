@@ -19,7 +19,12 @@ var mapData = []
 for(var level = 0; level < WORLD_LEVELS; level++){
 	mapData[level] = [];
 	
-	var map = new ROT.Map.Digger(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+	var map = new ROT.Map.Digger(DISPLAY_WIDTH - 20, DISPLAY_HEIGHT, {
+		dugPercentage: .65,
+		roomWidth: [3, 12],
+		roomHeight: [3, 7],
+		corridorLength: [1, 5]
+	});
 	map.create(function(x, y, wall){
 		if(!mapData[level][x]){
 			mapData[level][x] = [];
