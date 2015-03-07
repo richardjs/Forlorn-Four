@@ -1,14 +1,33 @@
 'use strict';
 
-function PC(x, y, controller){
+function PC(x, y){
 	this.x = x;
 	this.y = y;
-	this.controller = controller;
+	this.z = 0;
+
+	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
+		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
+			return true;
+		}
+		return world.mapData[this.z][x][y] === 0;
+	}.bind(this));
+	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
+	this.updateFOV();
 };
+
+PC.prototype.updateFOV = function(){
+	// Zero out...
+	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
+	// ...and recompute
+	this.fov.compute(this.x, this.y, VIEW_DISTANCE, function(x, y, distance, visibility){
+		this.fovData[this.z][x][y] = true;
+		world.seenData[this.z][x][y] = true;
+	}.bind(this));
+}
 
 PC.prototype.turn = function(done){
 	this.done = done;
-	this.controller.getAction(this.action.bind(this));
+	controller.getAction(this.action.bind(this));
 }
 
 PC.prototype.action = function(action){
@@ -43,17 +62,19 @@ PC.prototype.action = function(action){
 	if(completed){
 		this.done();
 	}else{
-		this.controller.getAction(this.action.bind(this));
+		controller.getAction(this.action.bind(this));
 	}
 }
 
 PC.prototype.tryMove = function(x, y){
-	//TODO stub--need proper access to mapData
 	if(world.mapData[0][x][y]){
 		return false;
 	}
 
 	this.x = x;
 	this.y = y;
+
+	this.updateFOV();
+
 	return true;
 }

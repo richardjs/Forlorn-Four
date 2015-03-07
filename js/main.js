@@ -22,40 +22,13 @@ do{
 	playerX = Math.floor(WORLD_WIDTH * Math.random());
 	playerY = Math.floor(WORLD_HEIGHT * Math.random());
 }while(world.mapData[0][playerX][playerY]);
-var player = new PC(playerX, playerY, controller);
+var player = new PC(playerX, playerY);
 
-// Initialize FOV
-var fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
-	if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
-		return true;
-	}
-	//TODO stub
-	return world.mapData[0][x][y] === 0;
-});
-//TODO doesn't support multiple levels
-var fovData = [];
-
-// Keep track of the map we've seen
-var seenData = []
-for(var x = 0; x < WORLD_WIDTH; x++){
-	seenData[x] = [];
-}
+world.pcs.push(player);
 
 function frame(){
-	// Compute FOV
-	//TODO tie this to PC movement
-	// Zero out...
-	for(var x = 0; x < WORLD_WIDTH; x++){
-		fovData[x] = [];
-	}
-	// ...and compute
-	fov.compute(player.x, player.y, VIEW_DISTANCE, function(x, y, distance, visibility){
-		fovData[x][y] = true;
-		seenData[x][y] = true;
-	});
-
 	// Draw
-	world.draw();
+	world.draw(player.z);
 
 	player.turn(function(){
 		frame();
