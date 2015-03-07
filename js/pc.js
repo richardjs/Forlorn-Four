@@ -49,7 +49,7 @@ PC.prototype.action = function(action){
 
 PC.prototype.tryMove = function(x, y){
 	//TODO stub--need proper access to mapData
-	if(mapData[0][x][y]){
+	if(world.mapData[0][x][y]){
 		return false;
 	}
 
