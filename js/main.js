@@ -48,14 +48,39 @@ do{
 }while(mapData[0][playerX][playerY]);
 var player = new PC(playerX, playerY, controller);
 
+// Initialize FOV
+var fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
+	if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
+		return true;
+	}
+	//TODO stub
+	return mapData[0][x][y] === 0;
+});
+//TODO doesn't support multiple levels
+var fovData = [];
 
 function frame(){
+	// Compute FOV
+	//TODO tie this to PC movement
+	// Zero out...
+	for(var x = 0; x < WORLD_WIDTH; x++){
+		fovData[x] = [];
+	}
+	// ...and compute
+	fov.compute(player.x, player.y, 10, function(x, y, distance, visibility){
+		fovData[x][y] = true;
+	});
+
 	// Draw
 	// TODO stub
 	for(var x = 0; x < WORLD_WIDTH; x++){
 		for(var y = 0; y < WORLD_HEIGHT; y++){
-			if(mapData[0][x][y]){
+			if(!fovData[x][y]){
 				display.draw(x, y, '', '', '#333');
+				continue;
+			}
+			if(mapData[0][x][y]){
+				display.draw(x, y, '', '', '#222');
 			}else{
 				display.draw(x, y, '', '', '#111');
 			}
