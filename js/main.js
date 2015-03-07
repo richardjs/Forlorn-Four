@@ -62,7 +62,7 @@ function frame(){
 		}
 	}
 
-	display.draw(player.x, player.y, '@', '#fff');
+	display.draw(player.x, player.y, '@', '#fff', '#111');
 
 	player.turn(function(){
 		frame();
