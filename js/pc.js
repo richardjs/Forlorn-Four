@@ -30,39 +30,39 @@ PC.prototype.updateFOV = function(){
 
 PC.prototype.turn = function(done){
 	this.done = done;
+	this.movesRemaining = 3;
 	controller.getAction(this.action.bind(this));
 }
 
 PC.prototype.action = function(action){
-	var completed;
 	switch(action){
 		case 'north':
-			completed = this.tryMove(this.x, this.y-1);
+			this.tryMove(this.x, this.y-1);
 			break;
 		case 'northeast':
-			completed = this.tryMove(this.x+1, this.y-1);
+			this.tryMove(this.x+1, this.y-1);
 			break;
 		case 'east':
-			completed = this.tryMove(this.x+1, this.y);
+			this.tryMove(this.x+1, this.y);
 			break;
 		case 'southeast':
-			completed = this.tryMove(this.x+1, this.y+1);
+			this.tryMove(this.x+1, this.y+1);
 			break;
 		case 'south':
-			completed = this.tryMove(this.x, this.y+1);
+			this.tryMove(this.x, this.y+1);
 			break;
 		case 'southwest':
-			completed = this.tryMove(this.x-1, this.y+1);
+			this.tryMove(this.x-1, this.y+1);
 			break;
 		case 'west':
-			completed = this.tryMove(this.x-1, this.y);
+			this.tryMove(this.x-1, this.y);
 			break;
 		case 'northwest':
-			completed = this.tryMove(this.x-1, this.y-1);
+			this.tryMove(this.x-1, this.y-1);
 			break;
 	}
 
-	if(completed){
+	if(this.movesRemaining === 0){
 		this.done();
 	}else{
 		controller.getAction(this.action.bind(this));
@@ -76,8 +76,10 @@ PC.prototype.tryMove = function(x, y){
 
 	this.x = x;
 	this.y = y;
+	this.movesRemaining--;
 
 	this.updateFOV();
+	world.draw(this.z);
 
 	return true;
 }
