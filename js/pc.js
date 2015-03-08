@@ -5,6 +5,9 @@ function PC(x, y){
 	this.y = y;
 	this.z = 0;
 
+	this.char = '@';
+	this.color = 'white';
+
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
 			return true;

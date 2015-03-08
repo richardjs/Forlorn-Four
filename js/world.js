@@ -1,6 +1,7 @@
 'use strict';
 
 function World(){
+	this.entities = [];
 	this.pcs = [];
 
 	var map = new ROT.Map.Digger(WORLD_WIDTH, WORLD_HEIGHT, {
@@ -20,6 +21,7 @@ function World(){
 }
 
 World.prototype.draw = function(z){
+	// Combine PCs' FOV data
 	var fovData = createArray(WORLD_WIDTH, WORLD_HEIGHT);
 	this.pcs.forEach(function(pc){
 		if(pc.z !== z){
@@ -32,6 +34,7 @@ World.prototype.draw = function(z){
 		}
 	}.bind(this));
 
+	// Draw map
 	for(var x = 0; x < WORLD_WIDTH; x++){
 		for(var y = 0; y < WORLD_HEIGHT; y++){
 			if(!fovData[x][y]){
@@ -54,5 +57,15 @@ World.prototype.draw = function(z){
 		}
 	}
 
-	display.draw(player.x, player.y, '@', '#fff', VISIBLE_FLOOR);
+	// Draw entities
+	this.entities.forEach(function(entity){
+		if(entity.z !== z){
+			return;
+		}
+		if(!fovData[entity.x][entity.y]){
+			return;
+		}
+
+		display.draw(entity.x, entity.y, entity.char, entity.color, VISIBLE_FLOOR);
+	}.bind(this));
 }

@@ -1,18 +1,27 @@
 'use strict';
 
-// Set up display
-var display = new ROT.Display({
+// Game components
+window.display = undefined;
+window.world = undefined;
+window.controller = undefined;
+window.scheduler = undefined;
+
+// Display
+display = new ROT.Display({
 	width: DISPLAY_WIDTH,
 	height: DISPLAY_HEIGHT,
 	fontSize: DISPLAY_FONT_SIZE
 });
 document.body.appendChild(display.getContainer());
 
-// Create world
-var world = new World();
+// World
+world = new World();
 
-// Initialize controller
-var controller = new Controller();
+// Controller
+controller = new Controller();
+
+// Scheduler
+scheduler = new ROT.Scheduler.Simple();
 
 // Place player
 // TODO stub
@@ -24,13 +33,20 @@ do{
 }while(world.mapData[0][playerX][playerY]);
 var player = new PC(playerX, playerY);
 
+world.entities.push(player);
 world.pcs.push(player);
 
-function frame(){
-	// Draw
-	world.draw(player.z);
+scheduler.add(player, true);
 
-	player.turn(function(){
+function frame(){
+	var entity = scheduler.next();
+	entity.active = true;
+
+	// Draw
+	world.draw(entity.z)
+
+	entity.turn(function(){
+		entity.active = false;
 		frame();
 	});
 }
