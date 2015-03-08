@@ -2,7 +2,7 @@
 
 // enum for map data
 var MAP = {
-	OPEN: 0,
+	FLOOR: 0,
 	WALL: 1,
 	STAIR_UP: 2,
 	STAIR_DOWN: 3
@@ -24,7 +24,7 @@ function World(){
 			if(wall === 1){
 				this.mapData[level][x][y] = MAP.WALL;
 			}else{
-				this.mapData[level][x][y] = MAP.OPEN;
+				this.mapData[level][x][y] = MAP.FLOOR;
 			}
 		}.bind(this));
 	}
@@ -49,22 +49,22 @@ World.prototype.draw = function(z){
 	// Draw map
 	for(var x = 0; x < WORLD_WIDTH; x++){
 		for(var y = 0; y < WORLD_HEIGHT; y++){
-			if(!fovData[x][y]){
-				if(!this.seenData[z][x][y]){
-					display.draw(x, y, '', '', UNSEEN_COLOR);
-				}else{
-					if(this.mapData[0][x][y] === MAP.WALL){
-						display.draw(x, y, '', '', SEEN_WALL_COLOR);
+			if(!fovData[x][y] && !this.seenData[z][x][y]){
+				display.draw(x, y, '', '', UNSEEN_COLOR);
+				continue;
+			}
+
+			switch(this.mapData[z][x][y]){
+				case MAP.WALL:
+					display.draw(x, y, '', '', WALL_COLOR);
+					break;
+				case MAP.FLOOR:
+					if(fovData[x][y]){
+						display.draw(x, y, '', '', VISIBLE_FLOOR_COLOR);
 					}else{
 						display.draw(x, y, '', '', SEEN_FLOOR_COLOR);
 					}
-				}
-				continue;
-			}
-			if(this.mapData[0][x][y] === MAP.WALL){
-				display.draw(x, y, '', '', VISIBLE_WALL_COLOR);
-			}else{
-				display.draw(x, y, '', '', VISIBLE_FLOOR_COLOR);
+					break;
 			}
 		}
 	}
