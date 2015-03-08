@@ -1,12 +1,7 @@
 'use strict';
 
 function PC(x, y){
-	this.x = x;
-	this.y = y;
-	this.z = 0;
-
-	this.char = '@';
-	this.color = 'white';
+	Entity.call(this, x, y, 0, '@', '#fff');
 
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
@@ -17,6 +12,8 @@ function PC(x, y){
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	this.updateFOV();
 };
+
+PC.prototype = Object.create(Entity.prototype);
 
 PC.prototype.updateFOV = function(){
 	// Zero out...
@@ -90,24 +87,4 @@ PC.prototype.action = function(action){
 	}else{
 		controller.getAction(this.action.bind(this));
 	}
-}
-
-PC.prototype.tryMove = function(x, y, z){
-	if(typeof(z) === 'undefined'){
-		z = this.z;
-	}
-
-	if(world.mapData[z][x][y] === MAP.WALL){
-		return false;
-	}
-
-	this.x = x;
-	this.y = y;
-	this.z = z;
-	this.movesRemaining--;
-
-	this.updateFOV();
-	world.draw(this.z);
-
-	return true;
 }

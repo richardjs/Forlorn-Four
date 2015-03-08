@@ -11,6 +11,7 @@ var MAP = {
 function World(){
 	this.entities = [];
 	this.pcs = [];
+	this.entityData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
 	this.maps = [];
 	this.mapData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
