@@ -88,3 +88,25 @@ PC.prototype.action = function(action){
 		controller.getAction(this.action.bind(this));
 	}
 }
+
+PC.prototype.hit = function(other){
+	switch(other.type){
+		case 'pc':
+			var tx = this.x;
+			var ty = this.y;
+			var tz = this.z;
+			this.x = other.x;
+			this.y = other.y;
+			this.z = other.z;
+			other.x = tx;
+			other.y = ty;
+			other.z = tz;
+			world.entityData[this.z][this.x][this.y] = this;
+			world.entityData[other.z][other.x][other.y] = other;
+			this.movesRemaining--;
+			this.updateFOV();
+			other.updateFOV();
+			world.draw(this.z);
+			break;
+	}
+}
