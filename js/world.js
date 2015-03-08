@@ -14,7 +14,9 @@ function World(){
 
 	this.maps = [];
 	this.mapData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
+	this.seenData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
+	// Generate map
 	for(var level = 0; level < WORLD_LEVELS; level++){
 		var map = new ROT.Map.Digger(WORLD_WIDTH, WORLD_HEIGHT, {
 			dugPercentage: .65,
@@ -33,8 +35,15 @@ function World(){
 		this.maps.push(map);
 
 		var upRoom = map.getRooms()[Math.floor(map.getRooms().length*Math.random())];
-		var stairX = Math.floor((upRoom.getRight() - upRoom.getLeft()) * Math.random()) + upRoom.getLeft();
-		var stairY = Math.floor((upRoom.getBottom() - upRoom.getTop()) * Math.random()) + upRoom.getTop();
+		var stairX;
+		var stairY;
+		if(level === 0){
+			stairX = upRoom.getCenter()[0];
+			stairY = upRoom.getCenter()[1];
+		}else{
+			stairX = Math.floor((upRoom.getRight() - upRoom.getLeft()) * Math.random()) + upRoom.getLeft();
+			stairY = Math.floor((upRoom.getBottom() - upRoom.getTop()) * Math.random()) + upRoom.getTop();
+		}
 		this.mapData[level][stairX][stairY] = MAP.STAIR_UP;
 		map.stairUp = {
 			x: stairX,
@@ -55,8 +64,6 @@ function World(){
 			};
 		}
 	}
-
-	this.seenData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 }
 
 World.prototype.draw = function(z){

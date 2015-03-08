@@ -14,33 +14,29 @@ display = new ROT.Display({
 });
 document.body.appendChild(display.getContainer());
 
+// Scheduler
+scheduler = new ROT.Scheduler.Simple();
+
 // World
 world = new World();
 
 // Controller
 controller = new Controller();
 
-// Scheduler
-scheduler = new ROT.Scheduler.Simple();
-
-// Place PCs
+// Create PCs
 // TODO stub
+var startX = world.maps[0].stairUp.x;
+var startY = world.maps[0].stairUp.y;
+var startXs = [startX, startX, startX - 1, startX + 1];
+var startYs = [startY - 1, startY + 1, startY, startY];
 var colors = ['#811', '#118', '#851', '#888'];
 for(var i = 0; i < 4; i++){
-	var pcX;
-	var pcY;
-	do{
-		pcX = Math.floor(WORLD_WIDTH * Math.random());
-		pcY = Math.floor(WORLD_HEIGHT * Math.random());
-	}while(world.mapData[0][pcX][pcY]);
-	var pc = new PC(pcX, pcY);
+	var pc = new PC(startXs[i], startYs[i]);
 	pc.color = colors[i];
-
 	world.entities.push(pc);
 	world.pcs.push(pc);
 	scheduler.add(pc, true);
 }
-
 
 function frame(){
 	var entity = scheduler.next();
