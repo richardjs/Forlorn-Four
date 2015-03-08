@@ -51,6 +51,9 @@ Controller.prototype.keypress = function(event){
 		case '<':
 			action = 'up';
 			break;
+		case '.':
+			action = 'wait';
+			break;
 	}
 
 	if(action){

@@ -80,6 +80,10 @@ PC.prototype.action = function(action){
 				);
 			}
 			break;
+
+		case 'wait':
+			this.movesRemaining = 0;
+			break;
 	}
 
 	if(this.movesRemaining === 0){
