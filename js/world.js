@@ -1,5 +1,13 @@
 'use strict';
 
+// enum for map data
+var MAP = {
+	OPEN: 0,
+	WALL: 1,
+	STAIR_UP: 2,
+	STAIR_DOWN: 3
+}
+
 function World(){
 	this.entities = [];
 	this.pcs = [];
@@ -13,7 +21,11 @@ function World(){
 	this.mapData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	for(var level = 0; level < WORLD_LEVELS; level++){
 		map.create(function(x, y, wall){
-			this.mapData[level][x][y] = wall;
+			if(wall === 1){
+				this.mapData[level][x][y] = MAP.WALL;
+			}else{
+				this.mapData[level][x][y] = MAP.OPEN;
+			}
 		}.bind(this));
 	}
 
@@ -41,7 +53,7 @@ World.prototype.draw = function(z){
 				if(!this.seenData[z][x][y]){
 					display.draw(x, y, '', '', UNSEEN_COLOR);
 				}else{
-					if(this.mapData[0][x][y]){
+					if(this.mapData[0][x][y] === MAP.WALL){
 						display.draw(x, y, '', '', SEEN_WALL_COLOR);
 					}else{
 						display.draw(x, y, '', '', SEEN_FLOOR_COLOR);
@@ -49,7 +61,7 @@ World.prototype.draw = function(z){
 				}
 				continue;
 			}
-			if(this.mapData[0][x][y]){
+			if(this.mapData[0][x][y] === MAP.WALL){
 				display.draw(x, y, '', '', VISIBLE_WALL_COLOR);
 			}else{
 				display.draw(x, y, '', '', VISIBLE_FLOOR_COLOR);

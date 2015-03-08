@@ -12,7 +12,7 @@ function PC(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
 			return true;
 		}
-		return world.mapData[this.z][x][y] === 0;
+		return world.mapData[this.z][x][y] === MAP.OPEN;
 	}.bind(this));
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	this.updateFOV();
