@@ -45,6 +45,12 @@ Controller.prototype.keypress = function(event){
 		case '3':
 			action = 'southeast';
 			break;
+		case '>':
+			action = 'down';
+			break;
+		case '<':
+			action = 'up';
+			break;
 	}
 
 	if(action){

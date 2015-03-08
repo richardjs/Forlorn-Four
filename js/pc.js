@@ -60,6 +60,29 @@ PC.prototype.action = function(action){
 		case 'northwest':
 			this.tryMove(this.x-1, this.y-1);
 			break;
+
+		case 'down':
+			if(world.mapData[this.z][this.x][this.y] === MAP.STAIR_DOWN){
+				this.tryMove(
+					world.maps[this.z + 1].stairUp.x,
+					world.maps[this.z + 1].stairUp.y,
+					this.z + 1
+				);
+			}
+			break;
+		case 'up':
+			if(world.mapData[this.z][this.x][this.y] === MAP.STAIR_UP){
+				if(this.z === 0){
+					// TODO stub, give prompt
+					break;
+				}
+				this.tryMove(
+					world.maps[this.z - 1].stairDown.x,
+					world.maps[this.z - 1].stairDown.y,
+					this.z - 1
+				);
+			}
+			break;
 	}
 
 	if(this.movesRemaining === 0){
@@ -69,13 +92,18 @@ PC.prototype.action = function(action){
 	}
 }
 
-PC.prototype.tryMove = function(x, y){
-	if(world.mapData[0][x][y] === MAP.WALL){
+PC.prototype.tryMove = function(x, y, z){
+	if(typeof(z) === 'undefined'){
+		z = this.z;
+	}
+
+	if(world.mapData[z][x][y] === MAP.WALL){
 		return false;
 	}
 
 	this.x = x;
 	this.y = y;
+	this.z = z;
 	this.movesRemaining--;
 
 	this.updateFOV();

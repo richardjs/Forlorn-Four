@@ -18,6 +18,7 @@ function World(){
 
 	// Generate map
 	for(var level = 0; level < WORLD_LEVELS; level++){
+		// Generate map for level
 		var map = new ROT.Map.Digger(WORLD_WIDTH, WORLD_HEIGHT, {
 			dugPercentage: .65,
 			roomWidth: [ROOM_WIDTH_MIN, ROOM_WIDTH_MAX],
@@ -31,9 +32,9 @@ function World(){
 				this.mapData[level][x][y] = MAP.FLOOR;
 			}
 		}.bind(this));
-
 		this.maps.push(map);
 
+		// Place stairs on the level
 		var upRoom = map.getRooms()[Math.floor(map.getRooms().length*Math.random())];
 		var stairX;
 		var stairY;
@@ -49,7 +50,6 @@ function World(){
 			x: stairX,
 			y: stairY
 		};
-
 		if(level !== WORLD_LEVELS - 1){
 			var downRoom;
 			do{
