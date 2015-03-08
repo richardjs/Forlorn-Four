@@ -12,7 +12,7 @@ function PC(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
 			return true;
 		}
-		return world.mapData[this.z][x][y] === MAP.FLOOR;
+		return world.mapData[this.z][x][y] !== MAP.WALL;
 	}.bind(this));
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	this.updateFOV();
@@ -70,7 +70,7 @@ PC.prototype.action = function(action){
 }
 
 PC.prototype.tryMove = function(x, y){
-	if(world.mapData[0][x][y]){
+	if(world.mapData[0][x][y] === MAP.WALL){
 		return false;
 	}
 
