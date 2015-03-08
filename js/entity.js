@@ -7,6 +7,8 @@ function Entity(x, y, z, char, color){
 
 	this.char = char;
 	this.color = color;
+
+	world.entityData[z][x][y] = this;
 }
 
 Entity.prototype.turn = function(done){
@@ -22,6 +24,15 @@ Entity.prototype.tryMove = function(x, y, z){
 		return false;
 	}
 
+	if(world.entityData[z][x][y]){
+		if(!this.hit(world.entityData[z][x][y])){
+			return false;
+		}
+	}
+
+	world.entityData[this.z][this.x][this.y] = undefined;
+	world.entityData[z][x][y] = this;
+
 	this.x = x;
 	this.y = y;
 	this.z = z;
@@ -31,4 +42,9 @@ Entity.prototype.tryMove = function(x, y, z){
 	world.draw(this.z);
 
 	return true;
+}
+
+Entity.prototype.hit = function(other){
+	// Return true is movement should proceed normally
+	return false;
 }
