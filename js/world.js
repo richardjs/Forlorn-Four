@@ -42,17 +42,17 @@ World.prototype.draw = function(z){
 					display.draw(x, y, '', '', UNSEEN_COLOR);
 				}else{
 					if(this.mapData[0][x][y]){
-						display.draw(x, y, '', '', SEEN_WALL);
+						display.draw(x, y, '', '', SEEN_WALL_COLOR);
 					}else{
-						display.draw(x, y, '', '', SEEN_FLOOR);
+						display.draw(x, y, '', '', SEEN_FLOOR_COLOR);
 					}
 				}
 				continue;
 			}
 			if(this.mapData[0][x][y]){
-				display.draw(x, y, '', '', VISIBLE_WALL);
+				display.draw(x, y, '', '', VISIBLE_WALL_COLOR);
 			}else{
-				display.draw(x, y, '', '', VISIBLE_FLOOR);
+				display.draw(x, y, '', '', VISIBLE_FLOOR_COLOR);
 			}
 		}
 	}
@@ -66,6 +66,13 @@ World.prototype.draw = function(z){
 			return;
 		}
 
-		display.draw(entity.x, entity.y, entity.char, entity.color, VISIBLE_FLOOR);
+		var bgColor;
+		if(entity.active){
+			bgColor = ACTIVE_ENTITY_COLOR;
+		}else{
+			bgColor = VISIBLE_FLOOR_COLOR;
+		}
+
+		display.draw(entity.x, entity.y, entity.char, entity.color, bgColor);
 	}.bind(this));
 }
