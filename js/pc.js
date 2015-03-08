@@ -1,7 +1,7 @@
 'use strict';
 
 function PC(x, y){
-	Entity.call(this, x, y, 0, '@', '#fff');
+	Entity.call(this, 'pc', x, y, 0, '@', '#fff');
 
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){

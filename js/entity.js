@@ -1,6 +1,8 @@
 'use strict';
 
-function Entity(x, y, z, char, color){
+function Entity(type, x, y, z, char, color){
+	this.type = type;
+
 	this.x = x;
 	this.y = y;
 	this.z = z;
