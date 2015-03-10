@@ -35,14 +35,21 @@ var startXs = [startX, startX, startX - 1, startX + 1];
 var startYs = [startY - 1, startY + 1, startY, startY];
 var colors = ['#811', '#118', '#851', '#888'];
 for(var i = 0; i < 4; i++){
-	var pc = new PC('Player '+i+1, startXs[i], startYs[i]);
+	var pc = new PC('Player '+(i+1), startXs[i], startYs[i]);
 	pc.color = colors[i];
 }
 
 // Test blob
 var blob = new Blob(startXs[0], startYs[0] - 1, 0);
 
+// Function to redraw the whole screen
+function redraw(){
+	display.clear();
+	world.draw();
+	log.draw();
+}
 
+// Game loop
 function frame(){
 	var entity = scheduler.next();
 	entity.active = true;

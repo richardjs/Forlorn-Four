@@ -17,6 +17,8 @@ function World(){
 	this.mapData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	this.seenData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
+	this.lastDrawnZ = 0;
+
 	// Generate map
 	for(var level = 0; level < WORLD_LEVELS; level++){
 		// Generate map for level
@@ -68,6 +70,10 @@ function World(){
 }
 
 World.prototype.draw = function(z){
+	if(typeof(z) === 'undefined'){
+		z = this.lastDrawnZ;
+	}
+
 	// Combine PCs' FOV data
 	var fovData = createArray(WORLD_WIDTH, WORLD_HEIGHT);
 	this.pcs.forEach(function(pc){
@@ -136,4 +142,6 @@ World.prototype.draw = function(z){
 
 		display.draw(entity.x, entity.y, entity.char, entity.color, bgColor);
 	}.bind(this));
+
+	this.lastDrawnZ = z;
 }

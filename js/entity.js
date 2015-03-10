@@ -67,6 +67,8 @@ Entity.prototype.meleeAttack = function(other){
 	if(damage > 0){
 		log.message('%s attacks %s for %s damage!'.format(this.name, other.name, damage));
 		other.damage(damage);
+	}else{
+		log.message('%s misses %s.'.format(this.name, other.name));
 	}
 	this.movesRemaining = 0;
 }
