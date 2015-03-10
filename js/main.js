@@ -40,6 +40,7 @@ for(var i = 0; i < 4; i++){
 }
 
 spawnBlobs();
+spawnBeetles();
 
 // Function to redraw the whole screen
 function redraw(){

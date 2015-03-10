@@ -121,3 +121,11 @@ PC.prototype.hit = function(other){
 			break;
 	}
 }
+
+PC.prototype.kill = function(source){
+	Entity.prototype.kill.call(this, source);
+	world.pcs.remove(this);
+	if(world.pcs.length === 0){
+		alert('Game over');
+	}
+}

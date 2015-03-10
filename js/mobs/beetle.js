@@ -1,9 +1,22 @@
 'use strict';
 
+function spawnBeetles(){
+	var count = Math.floor(ROT.RNG.getNormal(15, 3));
+	for(var i = 0; i < count; i++){
+		var z;
+		do{
+			z = Math.floor(ROT.RNG.getNormal(0, 2));
+		}while(z < 0);
+		var pos = world.findOpenSpace(z);
+		new Beetle(pos.x, pos.y, z);
+	}
+}
+
 function Beetle(x, y, z){
-	Entity.call(this, 'giant beetle', 'mob', x, y, z, 'B', '#864', 8, 20);
+	Entity.call(this, 'giant beetle', 'mob', x, y, z, 'B', '#864', 8, 15);
 	this.path = [];
 	this.newDestination();
+	this.agro = null;
 }
 
 Beetle.prototype = Object.create(Entity.prototype);
@@ -14,13 +27,24 @@ Beetle.prototype.newDestination = function(){
 }
 
 Beetle.prototype.turn = function(done){
-	if(this.path.length === 0 || !world.isPathClear(this.path)){
+	if(this.agro){
+		if(this.agro.z !== this.z || !this.agro.alive){
+			this.agro = null;
+		}else{
+			this.path = world.findPath(this.x, this.y, this.agro.x, this.agro.y, this.z);
+			if(this.path.length === 0 || this.path.length > 30){
+				this.agro = null;
+			}
+		}
+	}
+
+	if(!this.agro && (this.path.length === 0 || !world.isPathClear(this.path))){
 		this.newDestination();
 	}
 
 	this.movesRemaining = 2;
 	var move = function(){
-		if(this.path.length === 0){
+		if(!this.agro && this.path.length === 0){
 			this.newDestination();
 		}
 		if(this.path.length){
@@ -41,4 +65,9 @@ Beetle.prototype.turn = function(done){
 	}.bind(this);
 
 	move();
+}
+
+Beetle.prototype.damage = function(damage, other){
+	Entity.prototype.damage.call(this, damage, other);
+	this.agro = other;
 }

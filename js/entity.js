@@ -16,6 +16,8 @@ function Entity(name, type, x, y, z, char, color, strength, hp, options){
 	this.strength = strength;
 	this.hp = hp;
 
+	this.alive = true;
+
 	if(typeof(options.definiteArticle) === 'undefined'){
 		this.definiteArticle = true;
 	}else{
@@ -64,6 +66,7 @@ Entity.prototype.tryMove = function(x, y, z){
 }
 
 Entity.prototype.hit = function(other){
+	this.meleeAttack(other);
 	// Return true if movement should proceed normally
 	return false;
 }
@@ -78,13 +81,13 @@ Entity.prototype.meleeAttack = function(other){
 			other.definiteArticle ? 'the ' + other.name : other.name,
 			damage
 		));
-		other.damage(damage, this);
 	}else{
 		log.message('%s misses %s.'.format(
 			this.definiteArticle ? 'The ' + this.name : this.name,
 			other.definiteArticle ? 'the ' + other.name : other.name
 		));
 	}
+	other.damage(damage, this);
 	this.movesRemaining = 0;
 }
 
@@ -99,6 +102,7 @@ Entity.prototype.kill = function(source){
 	log.message('%s dies!'.format(
 		this.definiteArticle ? 'The ' + this.name : this.name
 	));
+	this.alive = false;
 	world.entities.remove(this);
 	world.entityData[this.z][this.x][this.y] = undefined;
 	scheduler.remove(this);
