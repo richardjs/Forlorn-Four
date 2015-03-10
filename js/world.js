@@ -152,6 +152,6 @@ World.prototype.findOpenSpace = function(z){
 	do{
 		x = Math.floor(Math.random() * WORLD_WIDTH);
 		y = Math.floor(Math.random() * WORLD_HEIGHT);
-	}while(this.mapData[z][x][y] === MAP.WALL && this.entityData[z][x][y]);
+	}while(this.mapData[z][x][y] === MAP.WALL || this.entityData[z][x][y]);
 	return {x: x, y: y}
 }
