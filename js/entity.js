@@ -46,7 +46,9 @@ Entity.prototype.tryMove = function(x, y, z){
 	this.z = z;
 	this.movesRemaining--;
 
-	this.updateFOV();
+	if(this.fov){
+		this.updateFOV();
+	}
 	world.draw(this.z);
 
 	return true;
