@@ -1,7 +1,7 @@
 'use strict';
 
-function PC(name, x, y){
-	Entity.call(this, name, 'pc', x, y, 0, '@', '#fff', 10, 20, {
+function PC(name, x, y, color, strength, hp){
+	Entity.call(this, name, 'pc', x, y, 0, '@', color, strength, hp, {
 		definiteArticle: false
 	});
 	world.pcs.push(this);

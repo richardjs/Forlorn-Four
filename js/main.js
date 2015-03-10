@@ -34,10 +34,11 @@ var startY = world.maps[0].stairUp.y;
 var startXs = [startX, startX, startX - 1, startX + 1];
 var startYs = [startY - 1, startY + 1, startY, startY];
 var colors = ['#811', '#118', '#851', '#888'];
-for(var i = 0; i < 4; i++){
-	var pc = new PC('Player '+(i+1), startXs[i], startYs[i]);
-	pc.color = colors[i];
-}
+
+new Fighter('Fighter', startXs[0], startYs[0]);
+new Mage('Mage', startXs[1], startYs[1]);
+new Rogue('Rogue', startXs[2], startYs[2]);
+new Cleric('Cleric', startXs[3], startYs[3]);
 
 spawnBlobs();
 spawnBeetles();
