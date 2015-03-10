@@ -74,11 +74,16 @@ World.prototype.draw = function(z){
 		z = this.lastDrawnZ;
 	}
 
+	// Only draw if there's a PC at this z
+	if(!this.pcOnZ(z)){
+		return;
+	}
+
 	// Combine PCs' FOV data
 	var fovData = createArray(WORLD_WIDTH, WORLD_HEIGHT);
 	this.pcs.forEach(function(pc){
 		if(pc.z !== z){
-			return;;
+			return;
 		}
 		for(var x = 0; x < WORLD_WIDTH; x++){
 			for(var y = 0; y < WORLD_HEIGHT; y++){
@@ -146,6 +151,27 @@ World.prototype.draw = function(z){
 	this.lastDrawnZ = z;
 }
 
+World.prototype.pcOnZ = function(z){
+	for(var i = 0; i < this.pcs.length; i++){
+		if(this.pcs[i].z === z){
+			return true
+		}
+	}
+	return false;
+}
+
+World.prototype.pcCanSee = function(x, y, z){
+	if(!this.pcOnZ(z)){
+		return false;
+	}
+	for(var i = 0; i < this.pcs.length; i++){
+		if(this.pcs[i].fovData[z][x][y]){
+			return true;
+		}
+	}
+	return false;
+}
+
 World.prototype.findOpenSpace = function(z){
 	var x;
 	var y;
@@ -154,4 +180,35 @@ World.prototype.findOpenSpace = function(z){
 		y = Math.floor(Math.random() * WORLD_HEIGHT);
 	}while(this.mapData[z][x][y] === MAP.WALL || this.entityData[z][x][y]);
 	return {x: x, y: y}
+}
+
+World.prototype.findPath = function(sx, sy, tx, ty, z, throughEntities){
+	throughEntities = throughEntities || false;
+	var dijkstra = new ROT.Path.Dijkstra(tx, ty, function(x, y){
+		if(x === sx && y === sy){
+			return true;
+		}
+		if(throughEntities){
+			return this.mapData[z][x][y] !== MAP.WALL;
+		}else{
+			return this.mapData[z][x][y] !== MAP.WALL && !this.entityData[z][x][y];
+		}
+	}.bind(this));
+	var path = [];
+	dijkstra.compute(sx, sy, function(x, y){
+		if(x === sx && y === sy){
+			return;
+		}
+		path.push({x: x, y: y, z: z});
+	}.bind(this));
+	return path;
+}
+
+World.prototype.isPathClear = function(path){
+	for(var i = 0; i < path.length; i++){
+		if(this.entityData[path[i].z][path[i].x][path[i].y]){
+			return false;
+		}
+	}
+	return true;
 }

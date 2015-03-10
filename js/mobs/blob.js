@@ -8,7 +8,7 @@ function spawnBlobs(){
 			z = Math.floor(ROT.RNG.getNormal(0, 1));
 		}while(z < 0);
 		var pos = world.findOpenSpace(z);
-		new Blob(pos.x, pos.y, z);
+		new Beetle(pos.x, pos.y, z);
 	}
 }
 
