@@ -1,6 +1,8 @@
 'use strict';
 
-function Entity(name, type, x, y, z, char, color, strength, hp){
+function Entity(name, type, x, y, z, char, color, strength, hp, options){
+	options = options || {};
+
 	this.name = name;
 	this.type = type;
 
@@ -13,6 +15,12 @@ function Entity(name, type, x, y, z, char, color, strength, hp){
 
 	this.strength = strength;
 	this.hp = hp;
+
+	if(typeof(options.definiteArticle) === 'undefined'){
+		this.definiteArticle = true;
+	}else{
+		this.definiteArticle = options.definiteArticle;
+	}
 
 	// Register entity with the game components
 	world.entities.push(this);
@@ -65,10 +73,17 @@ Entity.prototype.meleeAttack = function(other){
 	var otherRoll = Math.max(ROT.RNG.getNormal(other.strength, other.strength/3), 0);
 	var damage = Math.max(Math.floor(thisRoll - otherRoll), 0);
 	if(damage > 0){
-		log.message('%s attacks %s for %s damage!'.format(this.name, other.name, damage));
+		log.message('%s attacks %s for %s damage!'.format(
+			this.definiteArticle ? 'The ' + this.name : this.name,
+			other.definiteArticle ? 'the ' + other.name : other.name,
+			damage
+		));
 		other.damage(damage);
 	}else{
-		log.message('%s misses %s.'.format(this.name, other.name));
+		log.message('%s misses %s.'.format(
+			this.definiteArticle ? 'The ' + this.name : this.name,
+			other.definiteArticle ? 'the ' + other.name : other.name
+		));
 	}
 	this.movesRemaining = 0;
 }
