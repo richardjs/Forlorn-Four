@@ -96,6 +96,9 @@ Entity.prototype.damage = function(damage){
 }
 
 Entity.prototype.kill = function(){
+	log.message('%s dies!'.format(
+		this.definiteArticle ? 'The ' + this.name : this.name
+	));
 	world.entities.remove(this);
 	world.entityData[this.z][this.x][this.y] = undefined;
 	scheduler.remove(this);
