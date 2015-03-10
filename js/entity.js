@@ -78,7 +78,7 @@ Entity.prototype.meleeAttack = function(other){
 			other.definiteArticle ? 'the ' + other.name : other.name,
 			damage
 		));
-		other.damage(damage);
+		other.damage(damage, this);
 	}else{
 		log.message('%s misses %s.'.format(
 			this.definiteArticle ? 'The ' + this.name : this.name,
@@ -88,14 +88,14 @@ Entity.prototype.meleeAttack = function(other){
 	this.movesRemaining = 0;
 }
 
-Entity.prototype.damage = function(damage){
+Entity.prototype.damage = function(damage, source){
 	this.hp -= damage;
 	if(this.hp <= 0){
-		this.kill();
+		this.kill(source);
 	}
 }
 
-Entity.prototype.kill = function(){
+Entity.prototype.kill = function(source){
 	log.message('%s dies!'.format(
 		this.definiteArticle ? 'The ' + this.name : this.name
 	));
