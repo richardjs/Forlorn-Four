@@ -39,8 +39,7 @@ for(var i = 0; i < 4; i++){
 	pc.color = colors[i];
 }
 
-// Test blob
-var blob = new Blob(startXs[0], startYs[0] - 1, 0);
+spawnBlobs();
 
 // Function to redraw the whole screen
 function redraw(){
