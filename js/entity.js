@@ -1,6 +1,7 @@
 'use strict';
 
-function Entity(type, x, y, z, char, color, strength, hp){
+function Entity(name, type, x, y, z, char, color, strength, hp){
+	this.name = name;
 	this.type = type;
 
 	this.x = x;
@@ -62,9 +63,12 @@ Entity.prototype.hit = function(other){
 Entity.prototype.meleeAttack = function(other){
 	var thisRoll = Math.max(ROT.RNG.getNormal(this.strength, this.strength/3), 0);
 	var otherRoll = Math.max(ROT.RNG.getNormal(other.strength, other.strength/3), 0);
-	var damage = Math.max(thisRoll - otherRoll, 0);
-	console.log('attack for ' + damage + ' damage');
-	other.damage(damage);
+	var damage = Math.max(Math.floor(thisRoll - otherRoll), 0);
+	if(damage > 0){
+		log.message('%s attacks %s for %s damage!'.format(this.name, other.name, damage));
+		other.damage(damage);
+	}
+	this.movesRemaining = 0;
 }
 
 Entity.prototype.damage = function(damage){

@@ -5,6 +5,7 @@ window.display = undefined;
 window.world = undefined;
 window.controller = undefined;
 window.scheduler = undefined;
+window.log = undefined;
 
 // Display
 display = new ROT.Display({
@@ -14,14 +15,17 @@ display = new ROT.Display({
 });
 document.body.appendChild(display.getContainer());
 
-// Scheduler
-scheduler = new ROT.Scheduler.Simple();
-
 // World
 world = new World();
 
 // Controller
 controller = new Controller();
+
+// Scheduler
+scheduler = new ROT.Scheduler.Simple();
+
+// Log
+log = new Log();
 
 // Create PCs
 // TODO stub
@@ -31,7 +35,7 @@ var startXs = [startX, startX, startX - 1, startX + 1];
 var startYs = [startY - 1, startY + 1, startY, startY];
 var colors = ['#811', '#118', '#851', '#888'];
 for(var i = 0; i < 4; i++){
-	var pc = new PC(startXs[i], startYs[i]);
+	var pc = new PC('Player '+i+1, startXs[i], startYs[i]);
 	pc.color = colors[i];
 }
 
