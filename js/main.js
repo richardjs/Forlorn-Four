@@ -33,10 +33,11 @@ var colors = ['#811', '#118', '#851', '#888'];
 for(var i = 0; i < 4; i++){
 	var pc = new PC(startXs[i], startYs[i]);
 	pc.color = colors[i];
-	world.entities.push(pc);
-	world.pcs.push(pc);
-	scheduler.add(pc, true);
 }
+
+// Test blob
+var blob = new Blob(startXs[0], startYs[0] - 1, 0);
+
 
 function frame(){
 	var entity = scheduler.next();

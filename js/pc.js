@@ -1,7 +1,8 @@
 'use strict';
 
 function PC(x, y){
-	Entity.call(this, 'pc', x, y, 0, '@', '#fff');
+	Entity.call(this, 'pc', x, y, 0, '@', '#fff', 10, 20);
+	world.pcs.push(this);
 
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
@@ -111,6 +112,10 @@ PC.prototype.hit = function(other){
 			this.updateFOV();
 			other.updateFOV();
 			world.draw(this.z);
+			break;
+
+		case 'mob':
+			this.meleeAttack(other);
 			break;
 	}
 }
