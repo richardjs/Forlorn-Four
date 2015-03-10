@@ -145,3 +145,13 @@ World.prototype.draw = function(z){
 
 	this.lastDrawnZ = z;
 }
+
+World.prototype.findOpenSpace = function(z){
+	var x;
+	var y;
+	do{
+		x = Math.floor(Math.random() * WORLD_WIDTH);
+		y = Math.floor(Math.random() * WORLD_HEIGHT);
+	}while(this.mapData[z][x][y] === MAP.WALL && this.entityData[z][x][y]);
+	return {x: x, y: y}
+}
