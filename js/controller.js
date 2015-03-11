@@ -2,6 +2,8 @@
 
 function Controller(){
 	this.listener = this.keypress.bind(this);
+	this.cursorListener = this.cursorKeypress.bind(this);
+	this.cursoring = false;
 }
 
 Controller.prototype.getAction = function(callback){
@@ -10,6 +12,10 @@ Controller.prototype.getAction = function(callback){
 }
 
 Controller.prototype.keypress = function(event){
+	if(this.cursoring){
+		return;
+	}
+
 	var action;
 	var key = String.fromCharCode(event.charCode);
 	switch(key){
@@ -60,4 +66,95 @@ Controller.prototype.keypress = function(event){
 		document.body.removeEventListener('keypress', this.listener);
 		this.callback(action);
 	}
+}
+
+Controller.prototype.getCoordinate = function(sx, sy, callback, maxRadius){
+	this.cursoring = true;
+	this.cursorStartX = sx;
+	this.cursorStartY = sy;
+	this.cursorX = sx;
+	this.cursorY = sy;
+	this.coordCallback = callback;
+	this.coordRadius = maxRadius;
+	this.drawCursor();
+	document.body.addEventListener('keypress', this.cursorListener);
+}
+
+Controller.prototype.cursorKeypress = function(event){
+	var key = String.fromCharCode(event.charCode);
+	var nx = this.cursorX;
+	var ny = this.cursorY;
+
+	switch(key){
+		case 'h':
+		case '4':
+			nx--;
+			break;
+		case 'l':
+		case '6':
+			nx++;
+			break;
+		case 'j':
+		case '2':
+			ny++;
+			break;
+		case 'k':
+		case '8':
+			ny--;
+			break;
+		case 'y':
+		case '7':
+			nx--;
+			ny--;
+			break;
+		case 'u':
+		case '9':
+			nx++;
+			ny--
+			break;
+		case 'b':
+		case '1':
+			nx--;
+			ny++;
+			break;
+		case 'n':
+		case '3':
+			nx++;
+			ny++;
+			break;
+		case ' ':
+			event.preventDefault();
+			this.cursoring = false;
+			document.body.removeEventListener('keypress', this.cursorListener);
+			redraw();
+			this.coordCallback(this.cursorX, this.cursorY);
+			return;
+	}
+
+	if(this.coordRadius && Math.sqrt(Math.pow(nx - this.cursorStartX, 2) + Math.pow(ny - this.cursorStartY, 2)) > this.coordRadius
+			|| nx < 0 || nx+1 > WORLD_WIDTH || ny < 0 || ny+1 > WORLD_HEIGHT){
+		return;
+	}
+
+	this.cursorX = nx;
+	this.cursorY = ny;
+	this.drawCursor();
+}
+
+Controller.prototype.drawCursor = function(){
+	redraw();
+	var char = '';
+	var color = '';
+	var entity = world.entityData[world.lastDrawnZ][this.cursorX][this.cursorY];
+	if(entity && world.pcCanSee(this.cursorX, this.cursorY, world.lastDrawnZ)){
+		char = entity.char;
+		color = entity.color;
+	}
+	display.draw(
+		this.cursorX,
+		this.cursorY,
+		char,
+		color,
+		'#aa1'
+	);
 }
