@@ -13,7 +13,9 @@ function spawnBlobs(){
 }
 
 function Blob(x, y, z){
-	Entity.call(this, 'blob', 'mob', x, y, z, 'b', '#484', 5, 10);
+	Entity.call(this, 'blob', 'mob', x, y, z, 'b', '#484', 3, 10, {
+		xp: 5
+	});
 }
 
 Blob.prototype = Object.create(Entity.prototype);

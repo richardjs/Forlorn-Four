@@ -10,8 +10,11 @@ var MAP = {
 
 function World(){
 	this.entities = [];
-	this.pcs = [];
 	this.entityData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
+
+	this.pcs = [];
+	this.partyLevel = 1;
+	this.partyXP = 0;
 
 	this.maps = [];
 	this.mapData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
@@ -213,4 +216,8 @@ World.prototype.isPathClear = function(path){
 		}
 	}
 	return true;
+}
+
+World.prototype.gainXP = function(xp){
+	this.partyXP += xp;
 }

@@ -13,7 +13,9 @@ function spawnBeetles(){
 }
 
 function Beetle(x, y, z){
-	Entity.call(this, 'giant beetle', 'mob', x, y, z, 'B', '#864', 8, 15);
+	Entity.call(this, 'giant beetle', 'mob', x, y, z, 'B', '#864', 8, 15, {
+		xp: 10
+	});
 	this.path = [];
 	this.newDestination();
 	this.agro = null;

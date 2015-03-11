@@ -7,7 +7,6 @@ function PC(name, cls, x, y, color, strength, hp, sp){
 	world.pcs.push(this);
 
 	this.cls = cls;
-	this.level = 1;
 	this.maxHP = hp;
 	this.sp = sp || 0;
 	this.maxSP = this.sp;

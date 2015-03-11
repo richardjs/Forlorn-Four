@@ -24,6 +24,8 @@ function Entity(name, type, x, y, z, char, color, strength, hp, options){
 		this.definiteArticle = options.definiteArticle;
 	}
 
+	this.xp = options.xp || 0;
+
 	// Register entity with the game components
 	world.entities.push(this);
 	world.entityData[z][x][y] = this;
@@ -107,4 +109,8 @@ Entity.prototype.kill = function(source){
 	world.entityData[this.z][this.x][this.y] = undefined;
 	scheduler.remove(this);
 	world.draw(this.z);
+
+	if(this.xp){
+		world.gainXP(this.xp);
+	}
 }

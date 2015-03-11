@@ -18,7 +18,7 @@ PartyStatus.prototype.draw = function(){
 		display.drawText(
 			this.left,
 			y,
-			'%s %s'.format(pc.cls, pc.level)
+			'%s %s'.format(pc.cls, world.partyLevel)
 		);
 		var strengthStr = 'Str %s'.format(pc.strength);
 		display.drawText(
