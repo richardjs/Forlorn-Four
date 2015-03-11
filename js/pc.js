@@ -1,9 +1,12 @@
 'use strict';
 
-function PC(name, cls, x, y, color, strength, hp, sp){
-	Entity.call(this, name, 'pc', x, y, 0, '@', color, strength, hp, {
-		definiteArticle: false
-	});
+function PC(name, cls, x, y, color, strength, hp, sp, options){
+	options = options || {};
+	if(typeof(options.definiteArticle === 'undefined')){
+		options.definiteArticle = false;
+	}
+
+	Entity.call(this, name, 'pc', x, y, 0, '@', color, strength, hp, options);
 	world.pcs.push(this);
 
 	this.cls = cls;

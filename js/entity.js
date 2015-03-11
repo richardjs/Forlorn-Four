@@ -24,6 +24,18 @@ function Entity(name, type, x, y, z, char, color, strength, hp, options){
 		this.definiteArticle = options.definiteArticle;
 	}
 
+	if(typeof(options.attackMultiplier) === 'undefined'){
+		this.attackMultiplier = 1;
+	}else{
+		this.attackMultiplier = options.attackMultiplier;
+	}
+
+	if(typeof(options.defenseMultiplier) === 'undefined'){
+		this.defenseMultiplier = 1;
+	}else{
+		this.defenseMultiplier = options.defenseMultiplier;
+	}
+
 	this.xp = options.xp || 0;
 
 	// Register entity with the game components
@@ -74,8 +86,8 @@ Entity.prototype.hit = function(other){
 }
 
 Entity.prototype.meleeAttack = function(other){
-	var thisRoll = Math.max(ROT.RNG.getNormal(this.strength, this.strength/3), 0);
-	var otherRoll = Math.max(ROT.RNG.getNormal(other.strength, other.strength/3), 0);
+	var thisRoll = Math.max(ROT.RNG.getNormal(this.strength, this.strength/3), 0) * this.attackMultiplier;
+	var otherRoll = Math.max(ROT.RNG.getNormal(other.strength, other.strength/3), 0) * other.defenseMultiplier;
 	var damage = Math.max(Math.floor(thisRoll - otherRoll), 0);
 	if(damage > 0){
 		log.message('%s attacks %s for %s damage!'.format(
