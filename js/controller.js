@@ -167,12 +167,12 @@ Controller.prototype.drawCursor = function(){
 }
 
 Controller.prototype.dialog = function(text){
-	this.skipAction = true;
+	//this.skipAction = true;
 	display.drawText(0, 0, text, WORLD_WIDTH/2);
 	var listener = function(event){
 		document.body.removeEventListener('keypress', listener);
-		redraw();
-		this.skipAction = false;
+		//redraw();
+		//this.skipAction = false;
 	}.bind(this);
 	document.body.addEventListener('keypress', listener);
 }
