@@ -6,6 +6,7 @@ window.world = undefined;
 window.controller = undefined;
 window.scheduler = undefined;
 window.log = undefined;
+window.partyStatus = undefined;
 
 // Display
 display = new ROT.Display({
@@ -24,8 +25,9 @@ controller = new Controller();
 // Scheduler
 scheduler = new ROT.Scheduler.Simple();
 
-// Log
+// UI elements
 log = new Log();
+partyStatus = new PartyStatus();
 
 // Create PCs
 // TODO stub
@@ -33,21 +35,23 @@ var startX = world.maps[0].stairUp.x;
 var startY = world.maps[0].stairUp.y;
 var startXs = [startX, startX, startX - 1, startX + 1];
 var startYs = [startY - 1, startY + 1, startY, startY];
-var colors = ['#811', '#118', '#851', '#888'];
 
-new Fighter('Fighter', startXs[0], startYs[0]);
-new Mage('Mage', startXs[1], startYs[1]);
-new Rogue('Rogue', startXs[2], startYs[2]);
-new Cleric('Cleric', startXs[3], startYs[3]);
+new Fighter('Jack', startXs[0], startYs[0]);
+new Mage('Rufus', startXs[1], startYs[1]);
+new Rogue('Zachary', startXs[2], startYs[2]);
+new Cleric('Percival', startXs[3], startYs[3]);
 
 spawnBlobs();
 spawnBeetles();
 
+partyStatus.draw();
+
 // Function to redraw the whole screen
-function redraw(){
+function redraw(z){
 	display.clear();
 	world.draw();
 	log.draw();
+	partyStatus.draw();
 }
 
 // Game loop
@@ -62,6 +66,8 @@ function frame(){
 		entity.active = false;
 		frame();
 	});
+
+	partyStatus.draw();
 }
 
 frame();

@@ -1,10 +1,16 @@
 'use strict';
 
-function PC(name, x, y, color, strength, hp){
+function PC(name, cls, x, y, color, strength, hp, sp){
 	Entity.call(this, name, 'pc', x, y, 0, '@', color, strength, hp, {
 		definiteArticle: false
 	});
 	world.pcs.push(this);
+
+	this.cls = cls;
+	this.level = 1;
+	this.maxHP = hp;
+	this.sp = sp || 0;
+	this.maxSP = this.sp;
 
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){
@@ -123,8 +129,8 @@ PC.prototype.hit = function(other){
 }
 
 PC.prototype.kill = function(source){
-	Entity.prototype.kill.call(this, source);
 	world.pcs.remove(this);
+	Entity.prototype.kill.call(this, source);
 	if(world.pcs.length === 0){
 		alert('Game over');
 	}
