@@ -1,18 +1,19 @@
 'use strict';
 
 function Controller(){
-	this.listener = this.keypress.bind(this);
+	this.actionListener = this.keypress.bind(this);
 	this.cursorListener = this.cursorKeypress.bind(this);
-	this.cursoring = false;
+	this.skipAction = false;
 }
 
 Controller.prototype.getAction = function(callback){
 	this.callback = callback;
-	document.body.addEventListener('keypress', this.listener);
+	document.body.addEventListener('keypress', this.actionListener);
 }
 
 Controller.prototype.keypress = function(event){
-	if(this.cursoring){
+	if(this.skipAction){
+		console.log('skipping');
 		return;
 	}
 
@@ -51,25 +52,31 @@ Controller.prototype.keypress = function(event){
 		case '3':
 			action = 'southeast';
 			break;
+
 		case '>':
 			action = 'down';
 			break;
 		case '<':
 			action = 'up';
 			break;
+
 		case '.':
 			action = 'wait';
+			break;
+		
+		case 'd':
+			action = 'describe';
 			break;
 	}
 
 	if(action){
-		document.body.removeEventListener('keypress', this.listener);
+		document.body.removeEventListener('keypress', this.actionListener);
 		this.callback(action);
 	}
 }
 
 Controller.prototype.getCoordinate = function(sx, sy, callback, maxRadius){
-	this.cursoring = true;
+	this.skipAction = true;
 	this.cursorStartX = sx;
 	this.cursorStartY = sy;
 	this.cursorX = sx;
@@ -124,7 +131,7 @@ Controller.prototype.cursorKeypress = function(event){
 			break;
 		case ' ':
 			event.preventDefault();
-			this.cursoring = false;
+			this.skipAction = false;
 			document.body.removeEventListener('keypress', this.cursorListener);
 			redraw();
 			this.coordCallback(this.cursorX, this.cursorY);
@@ -157,4 +164,15 @@ Controller.prototype.drawCursor = function(){
 		color,
 		'#aa1'
 	);
+}
+
+Controller.prototype.dialog = function(text){
+	this.skipAction = true;
+	display.drawText(0, 0, text, WORLD_WIDTH/2);
+	var listener = function(event){
+		document.body.removeEventListener('keypress', listener);
+		redraw();
+		this.skipAction = false;
+	}.bind(this);
+	document.body.addEventListener('keypress', listener);
 }

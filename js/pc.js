@@ -95,6 +95,24 @@ PC.prototype.action = function(action){
 		case 'wait':
 			this.movesRemaining = 0;
 			break;
+
+		case 'describe':
+			controller.getCoordinate(this.x, this.y, function(x, y){
+				if(!world.pcCanSee(x, y, this.z)){
+					return;
+				}
+				var entity = world.entityData[this.z][x][y];
+				if(entity){
+					controller.dialog('%c{%s}%s%c{} - %s\nStrength: %s\nHP: %s'.format(
+						entity.color,
+						entity.char,
+						entity.name,
+						entity.strength,
+						entity.hp
+					));
+				}
+			}.bind(this));
+			break;
 	}
 
 	if(this.movesRemaining === 0){
