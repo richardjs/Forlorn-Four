@@ -5,3 +5,10 @@ function Mage(name, x, y){
 }
 
 Mage.prototype = Object.create(PC.prototype);
+
+Mage.prototype.levelUp = function(){
+	this.strength += Math.floor(Math.max(ROT.RNG.getNormal(3, 1), 1));
+	this.maxHP += Math.floor(Math.max(ROT.RNG.getNormal(6, 1), 1));
+	this.maxSP += Math.floor(Math.max(ROT.RNG.getNormal(5, 2), 1));
+}
+

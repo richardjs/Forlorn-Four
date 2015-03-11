@@ -134,3 +134,5 @@ PC.prototype.kill = function(source){
 		alert('Game over');
 	}
 }
+
+PC.prototype.levelUp = function(){}

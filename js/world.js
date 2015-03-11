@@ -220,4 +220,13 @@ World.prototype.isPathClear = function(path){
 
 World.prototype.gainXP = function(xp){
 	this.partyXP += xp;
+	if(this.partyXP >= (this.partyLevel * 100)){
+		this.partyXP -= (this.partyLevel * 100);
+		this.partyLevel++;
+		for(var i = 0; i < this.pcs.length; i++){
+			console.log(this.pcs[i].name);
+			this.pcs[i].levelUp();
+		}
+		partyStatus.draw();
+	}
 }

@@ -5,3 +5,8 @@ function Rogue(name, x, y){
 }
 
 Rogue.prototype = Object.create(PC.prototype);
+
+Rogue.prototype.levelUp = function(){
+	this.strength += Math.floor(Math.max(ROT.RNG.getNormal(3, 2), 1));
+	this.maxHP += Math.floor(Math.max(ROT.RNG.getNormal(8, 2), 1));
+}
