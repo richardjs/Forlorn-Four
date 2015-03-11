@@ -2,7 +2,7 @@
 
 function PartyStatus(){
 	this.left = WORLD_WIDTH;
-	this.top = 0;
+	this.top = 2;
 	this.width = DISPLAY_WIDTH - this.left;
 }
 

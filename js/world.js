@@ -148,6 +148,8 @@ World.prototype.draw = function(z){
 		display.draw(entity.x, entity.y, entity.char, entity.color, bgColor);
 	}.bind(this));
 
+	display.drawText(WORLD_WIDTH, 0, 'Floor ' + (z+1));
+
 	this.lastDrawnZ = z;
 }
 
