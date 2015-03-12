@@ -17,6 +17,9 @@ function main(){
 		var className = document.getElementById('class'+i).value;
 		var cls;
 		switch(className){
+			case 'Assassin':
+				cls = Assassin;
+				break;
 			case 'Barbarian':
 				cls = Barbarian;
 				break;
