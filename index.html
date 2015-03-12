@@ -128,6 +128,14 @@
 			</form>
 		</div>
 
+		<script>
+			for(var i = 0; i < 4; i++){
+				var cls = document.getElementById('class'+i);
+				var children = cls.getElementsByTagName('option');
+				children[Math.floor(Math.random()*children.length)].selected = true;
+			}
+		</script>
+
 		
 		<script src="lib/rot.min.js"></script>
 
