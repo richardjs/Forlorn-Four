@@ -40,4 +40,3 @@ Mage.prototype.action = function(action){
 		PC.prototype.action.call(this, action);
 	}
 }
-
