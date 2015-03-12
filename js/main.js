@@ -17,6 +17,9 @@ function main(){
 		var className = document.getElementById('class'+i).value;
 		var cls;
 		switch(className){
+			case 'Barbarian':
+				cls = Barbarian;
+				break;
 			case 'Cleric':
 				cls = Cleric;
 				break;
@@ -28,6 +31,9 @@ function main(){
 				break;
 			case 'Rogue':
 				cls = Rogue;
+				break;
+			case 'Stalwart':
+				cls = Stalwart;
 				break;
 		}
 		classes.push(cls);
