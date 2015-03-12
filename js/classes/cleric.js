@@ -1,7 +1,7 @@
 'use strict';
 
 function Cleric(name, x, y){
-	PC.call(this, name, 'Cleric', x, y, '#bbb', 6, 12, 3);
+	PC.call(this, name, 'Cleric', x, y, '#bbb', 6, 12, 5);
 }
 
 Cleric.prototype = Object.create(PC.prototype);
@@ -38,7 +38,7 @@ Cleric.prototype.action = function(action){
 				this.sp--;
 			}
 			PC.prototype.action.call(this, action);
-		}.bind(this), 10);
+		}.bind(this), 5);
 	}else{
 		PC.prototype.action.call(this, action);
 	}
