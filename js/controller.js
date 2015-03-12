@@ -64,6 +64,10 @@ Controller.prototype.keypress = function(event){
 			action = 'wait';
 			break;
 		
+		case 'c':
+			action = 'cast';
+			break;
+
 		case 'd':
 			action = 'describe';
 			break;
