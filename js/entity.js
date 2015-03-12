@@ -40,6 +40,7 @@ function Entity(name, type, x, y, z, char, color, strength, hp, options){
 
 	// Register entity with the game components
 	world.entities.push(this);
+	console.log(name);
 	world.entityData[z][x][y] = this;
 	scheduler.add(this, true);
 }

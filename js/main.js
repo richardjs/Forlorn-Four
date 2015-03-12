@@ -77,8 +77,9 @@ function main(){
 	new classes[2](names[2], startXs[1], startYs[1]);
 	new classes[3](names[3], startXs[2], startYs[2]);
 
-	spawnBlobs();
 	spawnBeetles();
+	spawnBlobs();
+	spawnCentipedes();
 
 	partyStatus.draw();
 
