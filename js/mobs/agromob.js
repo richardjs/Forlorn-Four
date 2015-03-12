@@ -1,6 +1,6 @@
 'use strict';
 
-function AgroMob(name, x, y, z, char, color, strength, hp, xp){
+function AgroMob(name, x, y, z, char, color, strength, hp, xp, options){
 	Entity.call(this, name, 'mob', x, y, z, char, color, hp, xp);
 	
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
@@ -12,11 +12,26 @@ function AgroMob(name, x, y, z, char, color, strength, hp, xp){
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
 	this.path = [];
+
+	options = options || {};
+	if(typeof(options.moves) === 'undefined'){
+		this.moves = 3;
+	}else{
+		this.moves = options.moves;
+	}
 }
 
 AgroMob.prototype = Object.create(Entity.prototype);
 
 AgroMob.prototype.updateFOV = function(){
+	if(!world.pcOnZ(this.z)){
+		this.agro = false;
+		return;
+	}
+	if(Math.random() < .5){
+		return;
+	}
+
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
 	var closestPC = undefined;
@@ -44,7 +59,7 @@ AgroMob.prototype.newDestination = function(){
 
 AgroMob.prototype.turn = function(done){
 	this.updateFOV();
-	if(this.agro){
+	if(this.agro && this.agro.alive){
 		this.path = world.findPath(this.x, this.y, this.agro.x, this.agro.y, this.z);
 		if(this.path.length === 0){
 			this.agro = null;
@@ -53,7 +68,7 @@ AgroMob.prototype.turn = function(done){
 		this.newDestination();
 	}
 
-	this.movesRemaining = 3;
+	this.movesRemaining = this.moves;
 	var move = function(){
 		if(!this.agro && this.path.length === 0){
 			this.newDestination();
