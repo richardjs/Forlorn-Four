@@ -20,8 +20,8 @@ function main(){
 			case 'Assassin':
 				cls = Assassin;
 				break;
-			case 'Barbarian':
-				cls = Barbarian;
+			case 'Berserker':
+				cls = Berserker;
 				break;
 			case 'Cleric':
 				cls = Cleric;
@@ -103,7 +103,8 @@ function main(){
 			frame();
 		});
 
-		partyStatus.draw();
+		redraw();
+		//partyStatus.draw();
 	}
 
 	frame();
