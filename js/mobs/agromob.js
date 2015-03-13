@@ -30,9 +30,11 @@ AgroMob.prototype.updateFOV = function(){
 		this.agro = false;
 		return;
 	}
+	/*
 	if(Math.random() < .5){
 		return;
 	}
+	*/
 
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 
