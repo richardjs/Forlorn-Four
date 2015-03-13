@@ -1,7 +1,9 @@
 'use strict';
 
 function AgroMob(name, x, y, z, char, color, strength, hp, xp, options){
-	Entity.call(this, name, 'mob', x, y, z, char, color, hp, xp);
+	Entity.call(this, name, 'mob', x, y, z, char, color, strength, hp, {
+		xp: xp
+	});
 	
 	this.fov = new ROT.FOV.PreciseShadowcasting(function(x, y){
 		if(x < 0 || x >= WORLD_WIDTH || y < 0 || y >= WORLD_HEIGHT){

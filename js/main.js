@@ -81,6 +81,7 @@ function main(){
 	spawnBlobs();
 	spawnCentipedes();
 	spawnSpiders();
+	spawnTrolls();
 
 	partyStatus.draw();
 

@@ -5,7 +5,7 @@ function spawnSpiders(){
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
-			z = Math.floor(ROT.RNG.getNormal(5, 5));
+			z = Math.floor(ROT.RNG.getNormal(5, 1));
 		}while(z < 0 || z > WORLD_LEVELS - 1);
 		var pos = world.findOpenSpace(z);
 		new Spider(pos.x, pos.y, z);
@@ -13,7 +13,7 @@ function spawnSpiders(){
 }
 
 function Spider(x, y, z){
-	AgroMob.call(this, 'cave spiders', x, y, z, 'S', '#444', 20, 30, 80, {
+	AgroMob.call(this, 'cave spiders', x, y, z, 'S', '#444', 15, 30, 80, {
 		moves: 4
 	});
 }

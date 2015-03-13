@@ -5,7 +5,7 @@ function spawnCentipedes(){
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
-			z = Math.floor(ROT.RNG.getNormal(2, 2));
+			z = Math.floor(ROT.RNG.getNormal(3, 3));
 		}while(z < 0 || z > WORLD_LEVELS - 1);
 		var pos = world.findOpenSpace(z);
 		new Centipede(pos.x, pos.y, z);
