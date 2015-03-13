@@ -1,7 +1,7 @@
 'use strict';
 
 function spawnShadows(){
-	var count = Math.floor(ROT.RNG.getNormal(5, 2));
+	var count = Math.floor(ROT.RNG.getNormal(3, 2));
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
@@ -13,7 +13,7 @@ function spawnShadows(){
 }
 
 function Shadow(x, y, z){
-	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 20, 10, 50, {
+	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 20, 10, 100, {
 		moves: 2
 	});
 }

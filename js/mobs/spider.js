@@ -1,11 +1,11 @@
 'use strict';
 
 function spawnSpiders(){
-	var count = Math.floor(ROT.RNG.getNormal(20, 3));
+	var count = Math.floor(ROT.RNG.getNormal(15, 3));
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
-			z = Math.floor(ROT.RNG.getNormal(5, 1));
+			z = Math.floor(ROT.RNG.getNormal(6, 1));
 		}while(z < 0 || z > WORLD_LEVELS - 1);
 		var pos = world.findOpenSpace(z);
 		new Spider(pos.x, pos.y, z);

@@ -1,7 +1,7 @@
 'use strict';
 
 function spawnBlobs(){
-	var count = Math.floor(ROT.RNG.getNormal(8, 2));
+	var count = Math.floor(ROT.RNG.getNormal(10, 2));
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
@@ -14,7 +14,7 @@ function spawnBlobs(){
 
 function Blob(x, y, z){
 	Entity.call(this, 'blob', 'mob', x, y, z, 'b', '#484', 3, 10, {
-		xp: 5
+		xp: 15
 	});
 }
 

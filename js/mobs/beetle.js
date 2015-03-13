@@ -1,7 +1,7 @@
 'use strict';
 
 function spawnBeetles(){
-	var count = Math.floor(ROT.RNG.getNormal(15, 3));
+	var count = Math.floor(ROT.RNG.getNormal(10, 3));
 	for(var i = 0; i < count; i++){
 		var z;
 		do{
@@ -14,7 +14,7 @@ function spawnBeetles(){
 
 function Beetle(x, y, z){
 	Entity.call(this, 'giant beetle', 'mob', x, y, z, 'B', '#864', 8, 15, {
-		xp: 10
+		xp: 30
 	});
 	this.path = [];
 	this.newDestination();

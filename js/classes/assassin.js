@@ -16,4 +16,6 @@ Assassin.prototype.levelUp = function(){
 	if(this.stealth < .85){
 		this.stealth += .025;
 	}
+	this.hp = this.maxHP;
+	this.sp = this.maxSP;
 }

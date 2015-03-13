@@ -13,7 +13,7 @@ function spawnTrolls(){
 }
 
 function Troll(x, y, z){
-	AgroMob.call(this, 'troll', x, y, z, 'T', '#b94', 40, 60, 100, {
+	AgroMob.call(this, 'troll', x, y, z, 'T', '#b94', 40, 60, 110, {
 		moves: 2
 	});
 	this.maxHP = 60;
