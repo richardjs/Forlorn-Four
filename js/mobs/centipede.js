@@ -13,7 +13,7 @@ function spawnCentipedes(){
 }
 
 function Centipede(x, y, z){
-	AgroMob.call(this, 'giant centipede', x, y, z, 'C', '#b94', 8, 10, 45);
+	AgroMob.call(this, 'giant centipede', x, y, z, 'c', '#b94', 8, 10, 45);
 }
 
 Centipede.prototype = Object.create(AgroMob.prototype);
