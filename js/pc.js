@@ -145,6 +145,10 @@ PC.prototype.hit = function(other){
 		case 'mob':
 			this.meleeAttack(other);
 			break;
+		
+		case 'goal':
+			alert('You win!');
+			break;
 	}
 }
 

@@ -85,6 +85,8 @@ function main(){
 	spawnSpiders();
 	spawnTrolls();
 
+	new Goal();
+
 	partyStatus.draw();
 
 	// Function to redraw the whole screen
