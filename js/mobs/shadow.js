@@ -13,7 +13,7 @@ function spawnShadows(){
 }
 
 function Shadow(x, y, z){
-	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 20, 10, 100, {
+	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 15, 10, 100, {
 		moves: 2
 	});
 }
