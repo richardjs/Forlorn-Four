@@ -13,7 +13,9 @@ function spawnShadows(){
 }
 
 function Shadow(x, y, z){
-	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 20, 10, 50);
+	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 20, 10, 50, {
+		moves: 2
+	});
 }
 
 Shadow.prototype = Object.create(AgroMob.prototype);
