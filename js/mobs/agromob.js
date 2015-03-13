@@ -85,6 +85,8 @@ AgroMob.prototype.turn = function(done){
 		if(this.path.length){
 			var next = this.path.shift();
 			this.tryMove(next.x, next.y, this.z);
+		}else{
+			this.movesRemaining--;
 		}
 
 		if(this.movesRemaining === 0){
