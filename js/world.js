@@ -193,6 +193,9 @@ World.prototype.findPath = function(sx, sy, tx, ty, z, throughEntities){
 		if(x === sx && y === sy){
 			return true;
 		}
+		if(x < 0 || y < 0 || x >= WORLD_WIDTH || y >= WORLD_WIDTH){
+			return false;
+		}
 		if(throughEntities){
 			return this.mapData[z][x][y] !== MAP.WALL;
 		}else{
