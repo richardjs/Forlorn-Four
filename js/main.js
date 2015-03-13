@@ -80,7 +80,8 @@ function main(){
 	spawnBeetles();
 	spawnBlobs();
 	spawnCentipedes();
-	spawnDragon();
+	spawnDragons();
+	spawnShadows();
 	spawnSpiders();
 	spawnTrolls();
 

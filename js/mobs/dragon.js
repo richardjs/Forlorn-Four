@@ -1,6 +1,6 @@
 'use strict';
 
-function spawnDragon(){
+function spawnDragons(){
 	var count = Math.floor(ROT.RNG.getNormal(5, 2));
 	for(var i = 0; i < count; i++){
 		var z;
