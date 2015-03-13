@@ -1,7 +1,7 @@
 'use strict';
 
 function Mage(name, x, y){
-	PC.call(this, name, 'Mage', x, y, '#448', 6, 12, 5);
+	PC.call(this, name, 'Mage', x, y, '#448', 6, 12, 3);
 }
 
 Mage.prototype = Object.create(PC.prototype);
@@ -9,7 +9,7 @@ Mage.prototype = Object.create(PC.prototype);
 Mage.prototype.levelUp = function(){
 	this.strength += Math.floor(Math.max(ROT.RNG.getNormal(3, 1), 1));
 	this.maxHP += Math.floor(Math.max(ROT.RNG.getNormal(6, 1), 1));
-	this.maxSP += Math.floor(Math.max(ROT.RNG.getNormal(5, 2), 1));
+	this.maxSP += Math.floor(Math.max(ROT.RNG.getNormal(2, 1), 1));
 	this.hp = this.maxHP;
 	this.sp = this.maxSP;
 }
@@ -22,17 +22,19 @@ Mage.prototype.action = function(action){
 			return;
 		}
 		controller.getCoordinate(this.x, this.y, function(x, y){
-			var entity = world.entityData[this.z][x][y];
-			if(entity){
-				var damage = Math.max(Math.floor(ROT.RNG.getNormal(8*world.partyLevel, 8*world.partyLevel/3)), 0);
-				entity.damage(damage);
-				log.message('%s blasts %s for %s damage!'.format(
-					this.name,
-					entity.definiteArticle ? 'the ' + entity.name : entity.name,
-					damage
-				));
-				this.movesRemaining = 0;
-				this.sp--;
+			if(this.fovData[this.z][x][y]){
+				var entity = world.entityData[this.z][x][y];
+				if(entity){
+					var damage = Math.max(Math.floor(ROT.RNG.getNormal(7*world.partyLevel, 7*world.partyLevel/3)), 0);
+					entity.damage(damage);
+					log.message('%s blasts %s for %s damage!'.format(
+						this.name,
+						entity.definiteArticle ? 'the ' + entity.name : entity.name,
+						damage
+					));
+					this.movesRemaining = 0;
+					this.sp--;
+				}
 			}
 			PC.prototype.action.call(this, action);
 		}.bind(this), 10);
