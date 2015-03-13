@@ -24,7 +24,7 @@ Mage.prototype.action = function(action){
 		controller.getCoordinate(this.x, this.y, function(x, y){
 			var entity = world.entityData[this.z][x][y];
 			if(entity){
-				var damage = Math.max(Math.floor(ROT.RNG.getNormal(30*world.partyLevel, 8*world.partyLevel/3)), 0);
+				var damage = Math.max(Math.floor(ROT.RNG.getNormal(8*world.partyLevel, 8*world.partyLevel/3)), 0);
 				entity.damage(damage);
 				log.message('%s blasts %s for %s damage!'.format(
 					this.name,

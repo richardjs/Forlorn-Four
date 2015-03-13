@@ -1,7 +1,7 @@
 'use strict';
 
 function spawnTrolls(){
-	var count = Math.floor(ROT.RNG.getNormal(30, 3));
+	var count = Math.floor(ROT.RNG.getNormal(10, 3));
 	for(var i = 0; i < count; i++){
 		var z;
 		do{

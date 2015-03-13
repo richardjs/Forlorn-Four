@@ -42,6 +42,11 @@ AgroMob.prototype.updateFOV = function(){
 		this.fovData[this.z][x][y] = true;
 		var entity = world.entityData[this.z][x][y];
 		if(entity && entity.type === 'pc'){
+			if(entity.stealth){
+				if(Math.random() < entity.stealth){
+					return;
+				}
+			}
 			var dist = Math.sqrt(Math.pow(this.x - entity.x, 2) + Math.pow(this.y - entity.y, 2));
 			if(dist < closestDist){
 				closestPC = entity;
