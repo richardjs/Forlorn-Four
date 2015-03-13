@@ -8,12 +8,12 @@ function spawnChimera(){
 			z = Math.floor(ROT.RNG.getNormal(WORLD_LEVELS - 1, 2));
 		}while(z < 0 || z > WORLD_LEVELS - 1);
 		var pos = world.findOpenSpace(z);
-		new Dragon(pos.x, pos.y, z);
+		new Chimera(pos.x, pos.y, z);
 	}
 }
 
-function Dragon(x, y, z){
-	AgroMob.call(this, 'dragon', x, y, z, 'C', '#90c', 60, 80, 200);
+function Chimera(x, y, z){
+	AgroMob.call(this, 'chimera', x, y, z, 'C', '#90c', 60, 80, 225);
 }
 
-Dragon.prototype = Object.create(AgroMob.prototype);
+Chimera.prototype = Object.create(AgroMob.prototype);
