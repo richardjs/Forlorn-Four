@@ -35,6 +35,8 @@ Mage.prototype.action = function(action){
 					this.movesRemaining = 0;
 					this.sp--;
 				}
+			}else{
+				controller.dialog('%s can\'t see that location.'.format(this.name));
 			}
 			PC.prototype.action.call(this, action);
 		}.bind(this), 10);
