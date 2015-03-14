@@ -60,9 +60,9 @@ function World(){
 			var downRoom;
 			do{
 				downRoom = map.getRooms()[Math.floor(map.getRooms().length*Math.random())];
-			}while(downRoom === upRoom);
-			stairX = Math.floor((downRoom.getRight() - downRoom.getLeft()) * Math.random()) + downRoom.getLeft();
-			stairY = Math.floor((downRoom.getBottom() - downRoom.getTop()) * Math.random()) + downRoom.getTop();
+				stairX = Math.floor((downRoom.getRight() - downRoom.getLeft()) * Math.random()) + downRoom.getLeft();
+				stairY = Math.floor((downRoom.getBottom() - downRoom.getTop()) * Math.random()) + downRoom.getTop();
+			}while(downRoom === upRoom || (stairX === map.stairUp.x && stairY === map.stairUp.y));
 			this.mapData[level][stairX][stairY] = MAP.STAIR_DOWN;
 			map.stairDown = {
 				x: stairX,
