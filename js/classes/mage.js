@@ -9,7 +9,7 @@ Mage.prototype = Object.create(PC.prototype);
 Mage.prototype.levelUp = function(){
 	this.strength += Math.floor(Math.max(ROT.RNG.getNormal(3, 1), 1));
 	this.maxHP += Math.floor(Math.max(ROT.RNG.getNormal(6, 1), 1));
-	this.maxSP += Math.floor(Math.max(ROT.RNG.getNormal(2, 1), 1));
+	this.maxSP += Math.floor(Math.max(ROT.RNG.getNormal(1, 1), 1));
 	this.hp = this.maxHP;
 	this.sp = this.maxSP;
 }
@@ -25,7 +25,7 @@ Mage.prototype.action = function(action){
 			if(this.fovData[this.z][x][y]){
 				var entity = world.entityData[this.z][x][y];
 				if(entity){
-					var damage = Math.max(Math.floor(ROT.RNG.getNormal(7*world.partyLevel, 7*world.partyLevel/3)), 0);
+					var damage = Math.max(Math.floor(ROT.RNG.getNormal(6*world.partyLevel, 6*world.partyLevel/3)), 0);
 					log.message('%s blasts %s for %s damage!'.format(
 						this.name,
 						entity.definiteArticle ? 'the ' + entity.name : entity.name,
