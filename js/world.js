@@ -229,6 +229,7 @@ World.prototype.gainXP = function(xp){
 		for(var i = 0; i < this.pcs.length; i++){
 			console.log(this.pcs[i].name);
 			this.pcs[i].levelUp();
+			log.message('Level up!');
 		}
 		partyStatus.draw();
 	}
