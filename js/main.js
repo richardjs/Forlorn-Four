@@ -42,7 +42,8 @@ function main(){
 		classes.push(cls);
 	}
 
-	document.body.innerHTML = '';
+	var mainDiv = document.getElementById('main');
+	mainDiv.innerHTML = '';
 
 	// Display
 	display = new ROT.Display({
@@ -50,7 +51,7 @@ function main(){
 		height: DISPLAY_HEIGHT,
 		fontSize: DISPLAY_FONT_SIZE
 	});
-	document.body.appendChild(display.getContainer());
+	mainDiv.appendChild(display.getContainer());
 
 	// World
 	world = new World();

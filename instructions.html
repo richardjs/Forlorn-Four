@@ -33,35 +33,82 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>Forlorn Four <small>Instructions (hastily written at 12:30 AM)</small></h1>
+			<h1>Forlorn Four</h1>
 			
-			<p>Your goal is to find the valuable artifact (symbolized by a '*') on the 10th level of the dungeon.</p>
+			<p class="lead">Your goal is to find the valuable artifact, the Amulet of
+			Asterisk, on the 10th level of the dungeon.</p>
 
-			<p>You create a party of four adventurers, selected from seven classes:</p>
+			<h4>Classes</h4>
+
+			<p>Your party consists of four adventurers, selected from seven classes:</p>
 			<ul>
 				<li>The <strong>fighter</strong> is an all-around competent
-				adventurer.</li>
+				dungeon explorer.</li>
 				<li>The <strong>berserker</strong> attacks well, but is damaged
 				more easily.</li>
-				<li>The <strong>stalwart</strong> is a good defender, but has a
-				weak attack.</li>
+				<li>The <strong>stalwart</strong> is an excellent defender, but
+				has a weak attack.</li>
 				<li>The <strong>rogue</strong> is weaker than the figher, but
 				may not be noticed by monsters.</li>
 				<li>The <strong>assassin</strong> has a very strong attack and
-				also may sneak past monsters, but is very weak defending.</li>
+				may also sneak past monsters, but is very weak defending.</li>
 				<li>The <strong>mage</strong> has a strong magic blast, but is
 				weak physically.</li>
 				<li>The <strong>cleric</strong> can heal allies, but is also
 				weak physically.</li>
 			</ul>
 
-			<p class="lead">Controls:</p>
+			<h4>Controls</h4>
+			<table class="table">
+				<thead>
+					<th>key</th>
+					<th>action</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>numpad or hjkyubn</th>
+						<td>move or attack (if the square is occupied by a monster)</td>
+					</tr>
+					<tr>
+						<td>&gt; and &lt;</td>
+						<td>descend or ascend stairs (represented by &gt; and &lt; symbols)</td>
+					</tr>
+					<tr>
+						<td>.</td>
+						<td>end turn early</td>
+					</tr>
+					<tr>
+						<td>c</td>
+						<td>cast a spell; move the cursor with the movement
+						keys and hit space to select a square, or select a
+						blank square to cancel (mage blasts require line of sight)</td>
+					</tr>
+					<tr>
+						<td>d</td>
+						<td>describe a monster; move the cursor with the movement
+						keys and hit space to select a square</td>
+					</tr>
+				<tbody>
+			</table>
+
+			<h4>Credits</h4>
+
+			<p><a href="mailto:richard@schneiderbox.net">Richard Schneider</a> &mdash; design and programming</p>
+
+			<p>I want to give a huge thanks to my excellent playtesters, who
+			contributed many great ideas and played the game much more than
+			I did:</p>
 			<ul>
-				<li><strong>numpad or hjklyubn</strong> &mdash; move (or attack, if the square is occupied by a monster)</li>
-				<li><strong>&gt; and &lt;</strong> &mdash; descend or ascend stairs (represented by &gt; and &lt; symbols)</li>
-				<li><strong>.</strong> &mdash; end turn early</strong></li>
-				<li><strong>c</strong> &mdash; cast a spell; move the cursor with the movement keys and hit space to select a square</li>
-				<li><strong>d</strong> &mdash; describe a monster; move the cursor with the movement keys and hit space to select a monster</li>
+				<li>Brock Hinerman</li>
+				<li><a href="https://jacsn.net">Jacsn</a></li>
+				<li>Josh Pilgrim</li>
 			</ul>
+
+			<p>This game was created for the <a href="http://7drl.org/about/">2015 7DRL Challenge</a> and
+			was also submitted to the March edition of <a href="http://onegameamonth.com/__richardjs">#onegameamonth</a>.
+
+			<p>The source code for Forlorn Four is available on <a href="https://github.com/richardjs/four">GitHub</a>.</p>
+
+			<h4>Thanks for playing!</h4>
 	</body>
 </html>

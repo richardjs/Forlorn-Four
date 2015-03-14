@@ -31,115 +31,114 @@
 	</head>
 	<body>
 		<div class="container">
-			<h1>Forlorn Four <small>Create your party</small></h1>
+			<div id="main">
+				<h1>Forlorn Four <small>Create your party</small></h1>
 
-			<small style="font-style: italic">This game is still a work in progress. Please give Richard any comments or criticism.</small>
+				<form class="form form-horizontal" onsubmit="main(); return false;">
 
-			<p class="lead"><a href="instructions.html" target="_blank">Instructions</a></p>
+					<div class="form-group">
+						<div class="col-sm-1">
+							<label>1</label>
+						</div>
+						<div class="col-sm-3">
+						  <input type="text" class="form-control" id="name0" placeholder="Name">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="class0">
+								<option>Assassin</option>
+								<option>Berserker</option>
+								<option>Cleric</option>
+								<option>Fighter</option>
+								<option>Mage</option>
+								<option>Rogue</option>
+								<option>Stalwart</option>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<label></label>
+						</div>
+					</div>
 
-			<form class="form form-horizontal" onsubmit="main(); return false;">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<label>2</label>
+						</div>
+						<div class="col-sm-3">
+						  <input type="text" class="form-control" id="name1" placeholder="Name">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="class1">
+								<option>Assassin</option>
+								<option>Berserker</option>
+								<option>Cleric</option>
+								<option>Fighter</option>
+								<option>Mage</option>
+								<option>Rogue</option>
+								<option>Stalwart</option>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<label></label>
+						</div>
+					</div>
 
-				<div class="form-group">
-					<div class="col-sm-1">
-						<label>1</label>
+					<div class="form-group">
+						<div class="col-sm-1">
+							<label>3</label>
+						</div>
+						<div class="col-sm-3">
+						  <input type="text" class="form-control" id="name2" placeholder="Name">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="class2">
+								<option>Assassin</option>
+								<option>Berserker</option>
+								<option>Cleric</option>
+								<option>Fighter</option>
+								<option>Mage</option>
+								<option>Rogue</option>
+								<option>Stalwart</option>
+							</select>
+						</div>
+						<div class="scol-sm-4">
+							<label></label>
+						</div>
 					</div>
-					<div class="col-sm-3">
-					  <input type="text" class="form-control" id="name0" placeholder="Name">
-					</div>
-					<div class="col-sm-2">
-						<select class="form-control" id="class0">
-							<option>Assassin</option>
-							<option>Berserker</option>
-							<option>Cleric</option>
-							<option>Fighter</option>
-							<option>Mage</option>
-							<option>Rogue</option>
-							<option>Stalwart</option>
-						</select>
-					</div>
-					<div class="col-sm-4">
-						<label></label>
-					</div>
-				</div>
 
-				<div class="form-group">
-					<div class="col-sm-1">
-						<label>2</label>
+					<div class="form-group">
+						<div class="col-sm-1">
+							<label>4</label>
+						</div>
+						<div class="col-sm-3">
+						  <input type="text" class="form-control" id="name3" placeholder="Name">
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="class3">
+								<option>Assassin</option>
+								<option>Berserker</option>
+								<option>Cleric</option>
+								<option>Fighter</option>
+								<option>Mage</option>
+								<option>Rogue</option>
+								<option>Stalwart</option>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<label></label>
+						</div>
 					</div>
-					<div class="col-sm-3">
-					  <input type="text" class="form-control" id="name1" placeholder="Name">
-					</div>
-					<div class="col-sm-2">
-						<select class="form-control" id="class1">
-							<option>Assassin</option>
-							<option>Berserker</option>
-							<option>Cleric</option>
-							<option>Fighter</option>
-							<option>Mage</option>
-							<option>Rogue</option>
-							<option>Stalwart</option>
-						</select>
-					</div>
-					<div class="col-sm-4">
-						<label></label>
-					</div>
-				</div>
 
-				<div class="form-group">
-					<div class="col-sm-1">
-						<label>3</label>
+					<div class="form-group">
+						<div class="col-sm-1">
+						</div>
+						<div class="col-sm-2">
+							<input type="submit" class="form-control btn" value="Begin">
+						</div>
 					</div>
-					<div class="col-sm-3">
-					  <input type="text" class="form-control" id="name2" placeholder="Name">
-					</div>
-					<div class="col-sm-2">
-						<select class="form-control" id="class2">
-							<option>Assassin</option>
-							<option>Berserker</option>
-							<option>Cleric</option>
-							<option>Fighter</option>
-							<option>Mage</option>
-							<option>Rogue</option>
-							<option>Stalwart</option>
-						</select>
-					</div>
-					<div class="scol-sm-4">
-						<label></label>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-sm-1">
-						<label>4</label>
-					</div>
-					<div class="col-sm-3">
-					  <input type="text" class="form-control" id="name3" placeholder="Name">
-					</div>
-					<div class="col-sm-2">
-						<select class="form-control" id="class3">
-							<option>Assassin</option>
-							<option>Berserker</option>
-							<option>Cleric</option>
-							<option>Fighter</option>
-							<option>Mage</option>
-							<option>Rogue</option>
-							<option>Stalwart</option>
-						</select>
-					</div>
-					<div class="col-sm-4">
-						<label></label>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-sm-1">
-					</div>
-					<div class="col-sm-2">
-						<input type="submit" class="form-control btn" value="Begin">
-					</div>
-				</div>
-				
-			</form>
+					
+				</form>
+			</div>
+			<p class="lead"><a href="instructions.html" target="_blank" style="color: #555;">Instructions</a></p>
 		</div>
 
 		<script>
