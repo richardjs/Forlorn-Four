@@ -147,7 +147,10 @@ PC.prototype.hit = function(other){
 			break;
 		
 		case 'goal':
-			alert('You win!');
+			other.kill();
+			alert('Congratulations, %s has found the amulet! You win!'.format(this.name));
+			log.message('Congratulations, %s has found the amulet! You win!'.format(this.name));
+			controller.dialog('A winner is you!');
 			break;
 	}
 }
