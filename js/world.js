@@ -226,10 +226,10 @@ World.prototype.gainXP = function(xp){
 	if(this.partyXP >= (this.partyLevel * 100)){
 		this.partyXP -= (this.partyLevel * 100);
 		this.partyLevel++;
+		log.message('Level up!');
 		for(var i = 0; i < this.pcs.length; i++){
 			console.log(this.pcs[i].name);
 			this.pcs[i].levelUp();
-			log.message('Level up!');
 		}
 		partyStatus.draw();
 	}
