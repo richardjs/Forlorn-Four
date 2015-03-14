@@ -156,7 +156,10 @@ PC.prototype.kill = function(source){
 	world.pcs.remove(this);
 	Entity.prototype.kill.call(this, source);
 	if(world.pcs.length === 0){
-		alert('Game over');
+		var restart = confirm('Game over! All your PCs have died. Restart?');
+		if(restart){
+			window.location.reload();
+		}
 	}
 }
 

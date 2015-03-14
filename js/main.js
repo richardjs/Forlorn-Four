@@ -108,6 +108,10 @@ function main(){
 		world.draw(entity.z)
 
 		entity.turn(function(){
+			if(world.pcs.length === 0){
+				return;
+			}
+
 			entity.active = false;
 			frame();
 		});
