@@ -83,7 +83,7 @@ PC.prototype.action = function(action){
 		case 'up':
 			if(world.mapData[this.z][this.x][this.y] === MAP.STAIR_UP){
 				if(this.z === 0){
-					// TODO stub, give prompt
+					controller.dialog('You wouldn\'t abandon your quest so soon!');
 					break;
 				}
 				this.tryMove(
