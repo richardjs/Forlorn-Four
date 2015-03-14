@@ -26,12 +26,12 @@ Mage.prototype.action = function(action){
 				var entity = world.entityData[this.z][x][y];
 				if(entity){
 					var damage = Math.max(Math.floor(ROT.RNG.getNormal(7*world.partyLevel, 7*world.partyLevel/3)), 0);
-					entity.damage(damage);
 					log.message('%s blasts %s for %s damage!'.format(
 						this.name,
 						entity.definiteArticle ? 'the ' + entity.name : entity.name,
 						damage
 					));
+					entity.damage(damage);
 					this.movesRemaining = 0;
 					this.sp--;
 				}
