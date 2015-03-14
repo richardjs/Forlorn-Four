@@ -13,7 +13,6 @@ Controller.prototype.getAction = function(callback){
 
 Controller.prototype.keypress = function(event){
 	if(this.skipAction){
-		console.log('skipping');
 		return;
 	}
 
@@ -172,7 +171,7 @@ Controller.prototype.drawCursor = function(){
 
 Controller.prototype.dialog = function(text){
 	//this.skipAction = true;
-	display.drawText(0, 0, text, WORLD_WIDTH/2);
+	display.drawText(0, 0, text, 3*WORLD_WIDTH/4);
 	var listener = function(event){
 		document.body.removeEventListener('keypress', listener);
 		//redraw();

@@ -16,6 +16,7 @@ function Shadow(x, y, z){
 	AgroMob.call(this, 'shadow', x, y, z, ' ', '#000', 15, 10, 100, {
 		moves: 2
 	});
+	this.description = 'Hard to see in the dark. Also hard to see against a black background, or while wearing sunglasses.\n\nWho knows what evil lurks in the hearts of mobs? The shadow knows.';
 }
 
 Shadow.prototype = Object.create(AgroMob.prototype);

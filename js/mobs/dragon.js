@@ -14,6 +14,7 @@ function spawnDragons(){
 
 function Dragon(x, y, z){
 	AgroMob.call(this, 'dragon', x, y, z, 'D', '#800', 80, 100, 350);
+	this.description = 'A sight to behold. Very deadly, and decidedly not toothless.\n\nWhile it does live in a dungeon, it has no relation to maritime magic users.';
 }
 
 Dragon.prototype = Object.create(AgroMob.prototype);

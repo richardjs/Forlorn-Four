@@ -22,6 +22,8 @@ function PC(name, cls, x, y, color, strength, hp, sp, options){
 	}.bind(this));
 	this.fovData = createArray(WORLD_LEVELS, WORLD_WIDTH, WORLD_HEIGHT);
 	this.updateFOV();
+
+	this.description = '';
 };
 
 PC.prototype = Object.create(Entity.prototype);
@@ -103,12 +105,13 @@ PC.prototype.action = function(action){
 				}
 				var entity = world.entityData[this.z][x][y];
 				if(entity){
-					controller.dialog('%c{%s}%s%c{} - %s\nStrength: %s\nHP: %s'.format(
+					controller.dialog('%c{%s}%s%c{} - %s\nStrength: %s\nHP: %s\n\n%s'.format(
 						entity.color,
 						entity.char,
 						entity.name,
 						entity.strength,
-						entity.hp
+						entity.hp,
+						entity.description
 					));
 				}
 			}.bind(this));

@@ -13,9 +13,10 @@ function spawnSpiders(){
 }
 
 function Spider(x, y, z){
-	AgroMob.call(this, 'cave spiders', x, y, z, 'S', '#444', 15, 30, 80, {
+	AgroMob.call(this, 'cave spider', x, y, z, 'S', '#444', 15, 30, 80, {
 		moves: 4
 	});
+	this.description = 'Neither itsy nor bitsy. Still a spider. Probably moves fast.\n\nMost spiders do not pose a danger to humans. Most spiders are also not the size of a horse.';
 }
 
 Spider.prototype = Object.create(AgroMob.prototype);

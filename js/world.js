@@ -61,8 +61,8 @@ function World(){
 			do{
 				downRoom = map.getRooms()[Math.floor(map.getRooms().length*Math.random())];
 			}while(downRoom === upRoom);
-			stairX = Math.floor((downRoom.getRight() - upRoom.getLeft()) * Math.random()) + upRoom.getLeft();
-			stairY = Math.floor((downRoom.getBottom() - upRoom.getTop()) * Math.random()) + upRoom.getTop();
+			stairX = Math.floor((downRoom.getRight() - downRoom.getLeft()) * Math.random()) + downRoom.getLeft();
+			stairY = Math.floor((downRoom.getBottom() - downRoom.getTop()) * Math.random()) + downRoom.getTop();
 			this.mapData[level][stairX][stairY] = MAP.STAIR_DOWN;
 			map.stairDown = {
 				x: stairX,
@@ -228,7 +228,6 @@ World.prototype.gainXP = function(xp){
 		this.partyLevel++;
 		log.message('Level up!');
 		for(var i = 0; i < this.pcs.length; i++){
-			console.log(this.pcs[i].name);
 			this.pcs[i].levelUp();
 		}
 		partyStatus.draw();

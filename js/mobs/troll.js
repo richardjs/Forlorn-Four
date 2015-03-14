@@ -17,6 +17,7 @@ function Troll(x, y, z){
 		moves: 2
 	});
 	this.maxHP = 60;
+	this.description = 'A monstrous humanoid that looks ready for war. Also has the ability to regenerate.\n\nFeeding is prohibited.';
 }
 
 Troll.prototype = Object.create(AgroMob.prototype);

@@ -2,7 +2,8 @@
 
 function Goal(){
 	var pos = world.findOpenSpace(WORLD_LEVELS - 1);
-	Entity.call(this, 'Amulet of Asterisk', 'goal', pos.x, pos.y, WORLD_LEVELS - 1, '*', '#FD0', 0, 0);
+	Entity.call(this, 'Amulet of Asterisk', 'goal', pos.x, pos.y, WORLD_LEVELS - 1, '*', '#fd0', 0, 0);
+	this.description = 'Your goal. Victory is almost upon you!\n\nIt shines with the beautiful glow of #fd0.'
 }
 
 Goal.prototype = Object.create(Entity.prototype);

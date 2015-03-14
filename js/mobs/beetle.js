@@ -19,6 +19,7 @@ function Beetle(x, y, z){
 	this.path = [];
 	this.newDestination();
 	this.agro = null;
+	this.description = 'A humongous coleoptera. It looks like it\'s minding its own business.\n\nNo, it\'s not Ringo.'
 }
 
 Beetle.prototype = Object.create(Entity.prototype);

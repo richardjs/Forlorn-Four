@@ -16,6 +16,7 @@ function Blob(x, y, z){
 	Entity.call(this, 'blob', 'mob', x, y, z, 'b', '#484', 3, 10, {
 		xp: 15
 	});
+	this.description = 'An amorphous green blob. Technically a BLOB--a Blobby Large OBject. May or may not be alive.\n\nIf the world were a program, this might be what existed before real creatures were implemented.'
 }
 
 Blob.prototype = Object.create(Entity.prototype);
